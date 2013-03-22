@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		032C73A116FC2AA900840696 /* Quest.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C73A016FC2AA900840696 /* Quest.m */; };
 		035EDC0816F2DF30000D54BF /* RegistrationTurtle.m in Sources */ = {isa = PBXBuildFile; fileRef = 035EDC0716F2DF30000D54BF /* RegistrationTurtle.m */; };
 		035EDC1116F3EF74000D54BF /* QuestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035EDC1016F3EF73000D54BF /* QuestViewController.m */; };
 		035EDC1416F3FA5C000D54BF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035EDC1316F3FA5C000D54BF /* RootViewController.m */; };
@@ -16,6 +17,10 @@
 		035EDC2716F50342000D54BF /* wow_icon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 035EDC2516F50342000D54BF /* wow_icon_small.png */; };
 		037875D916F1ADA100F6195F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037875D816F1ADA100F6195F /* SettingsViewController.m */; };
 		037875DD16F1C27300F6195F /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 037875DC16F1C27300F6195F /* LoginManager.m */; };
+		03836BF616FBDB12004EED6B /* QuestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03836BF516FBDB12004EED6B /* QuestManager.m */; };
+		03836BF816FBDCFB004EED6B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03836BF716FBDCFB004EED6B /* CoreLocation.framework */; };
+		03836BFA16FBE142004EED6B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03836BF916FBE142004EED6B /* MapKit.framework */; };
+		03836BFD16FBE57F004EED6B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03836BFC16FBE57F004EED6B /* MapViewController.m */; };
 		03BCE63416F11BBC00FCA1BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCE63316F11BBC00FCA1BF /* UIKit.framework */; };
 		03BCE63616F11BBC00FCA1BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCE63516F11BBC00FCA1BF /* Foundation.framework */; };
 		03BCE63816F11BBC00FCA1BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCE63716F11BBC00FCA1BF /* CoreGraphics.framework */; };
@@ -53,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		032C739F16FC2AA900840696 /* Quest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quest.h; sourceTree = "<group>"; };
+		032C73A016FC2AA900840696 /* Quest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quest.m; sourceTree = "<group>"; };
 		035EDC0616F2DF2F000D54BF /* RegistrationTurtle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationTurtle.h; sourceTree = "<group>"; };
 		035EDC0716F2DF30000D54BF /* RegistrationTurtle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RegistrationTurtle.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		035EDC0916F2E262000D54BF /* RegistrationTurtleDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationTurtleDelegate.h; sourceTree = "<group>"; };
@@ -72,6 +79,12 @@
 		037875D816F1ADA100F6195F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		037875DB16F1C27300F6195F /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
 		037875DC16F1C27300F6195F /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		03836BF416FBDB12004EED6B /* QuestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestManager.h; sourceTree = "<group>"; };
+		03836BF516FBDB12004EED6B /* QuestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestManager.m; sourceTree = "<group>"; };
+		03836BF716FBDCFB004EED6B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		03836BF916FBE142004EED6B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		03836BFB16FBE57F004EED6B /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		03836BFC16FBE57F004EED6B /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		03BCE63016F11BBC00FCA1BF /* enQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = enQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCE63316F11BBC00FCA1BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		03BCE63516F11BBC00FCA1BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -116,6 +129,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03836BFA16FBE142004EED6B /* MapKit.framework in Frameworks */,
+				03836BF816FBDCFB004EED6B /* CoreLocation.framework in Frameworks */,
 				03BCE63416F11BBC00FCA1BF /* UIKit.framework in Frameworks */,
 				03BCE63616F11BBC00FCA1BF /* Foundation.framework in Frameworks */,
 				03BCE63816F11BBC00FCA1BF /* CoreGraphics.framework in Frameworks */,
@@ -135,9 +150,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		032C739E16FC2A7800840696 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				032C739F16FC2AA900840696 /* Quest.h */,
+				032C73A016FC2AA900840696 /* Quest.m */,
+			);
+			name = "Data Models";
+			sourceTree = "<group>";
+		};
 		035EDC0C16F2F84B000D54BF /* Helpers and Turtles */ = {
 			isa = PBXGroup;
 			children = (
+				03836BF416FBDB12004EED6B /* QuestManager.h */,
+				03836BF516FBDB12004EED6B /* QuestManager.m */,
 				037875DB16F1C27300F6195F /* LoginManager.h */,
 				037875DC16F1C27300F6195F /* LoginManager.m */,
 				035EDC0D16F306B0000D54BF /* LoginManagerDelegate.h */,
@@ -164,6 +190,7 @@
 		03BCE62716F11BBC00FCA1BF = {
 			isa = PBXGroup;
 			children = (
+				03836BF916FBE142004EED6B /* MapKit.framework */,
 				03BCE63916F11BBC00FCA1BF /* enQuest */,
 				03BCE66816F11BBC00FCA1BF /* enQuestTests */,
 				03BCE63216F11BBC00FCA1BF /* Frameworks */,
@@ -183,6 +210,7 @@
 		03BCE63216F11BBC00FCA1BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03836BF716FBDCFB004EED6B /* CoreLocation.framework */,
 				03BCE63316F11BBC00FCA1BF /* UIKit.framework */,
 				03BCE63516F11BBC00FCA1BF /* Foundation.framework */,
 				03BCE63716F11BBC00FCA1BF /* CoreGraphics.framework */,
@@ -205,6 +233,9 @@
 				037875D816F1ADA100F6195F /* SettingsViewController.m */,
 				035EDC0F16F3EF73000D54BF /* QuestViewController.h */,
 				035EDC1016F3EF73000D54BF /* QuestViewController.m */,
+				03836BFB16FBE57F004EED6B /* MapViewController.h */,
+				03836BFC16FBE57F004EED6B /* MapViewController.m */,
+				032C739E16FC2A7800840696 /* Data Models */,
 				035EDC0C16F2F84B000D54BF /* Helpers and Turtles */,
 				03BCE63A16F11BBC00FCA1BF /* Supporting Files */,
 			);
@@ -392,6 +423,9 @@
 				035EDC1816F435CD000D54BF /* LogoutTurtle.m in Sources */,
 				035EDC1B16F44D41000D54BF /* Constants.m in Sources */,
 				03F862D216F5ADE400AD67E0 /* CSRFTurtle.m in Sources */,
+				03836BF616FBDB12004EED6B /* QuestManager.m in Sources */,
+				03836BFD16FBE57F004EED6B /* MapViewController.m in Sources */,
+				032C73A116FC2AA900840696 /* Quest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,7 +500,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -490,7 +524,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
