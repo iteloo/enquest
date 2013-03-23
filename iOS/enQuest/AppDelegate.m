@@ -7,39 +7,27 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginManager.h"
 #import "RootViewController.h"
+#import "User.h"
+#import "StackMob.h"
+#import "CoreDataManager.h"
+#import "UserManager.h"
 
 @implementation AppDelegate
 
+@synthesize client = _client;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults objectForKey:LoginInformationStoredKey]) {
-        NSString *username = [defaults objectForKey:StoredUsernameKey];
-        NSString *password = [defaults objectForKey:StoredPasswordKey];
-        
-        NSLog(@"...Login info retrieved: { %@ : %@ }", username, password);
-        
-        LoginManager *manager = [LoginManager sharedManager];
-        manager.delegate = self;
-        [manager loginWithUsername:username password:password];
-    }
-    else
-    {
-        NSLog(@"...Cannot retrieve login info.");
-    }
+    self.client = [[SMClient alloc] initWithAPIVersion:@"0" publicKey:@"8bbc858b-eb60-4e6b-a620-f74c7add5413"];
+    [[CoreDataManager sharedManager] setUp];
+    
+    UserManager *userManager = [UserManager sharedManager];
+    [userManager retrieveSavedUser];
     
     return YES;
 }
 
-- (void)loginDidFailWithError:(NSError *)error
-{
-    /** hack: move to notification later (rmb to remove RVC header)**/
-    RootViewController *rvc = (RootViewController*) self.window.rootViewController;
-    [rvc handleLoginNotification];
-}
-							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -66,5 +54,6 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 @end

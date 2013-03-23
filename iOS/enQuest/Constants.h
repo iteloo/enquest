@@ -11,10 +11,6 @@ extern NSString *const EQErrorDomain;
 extern const NSTimeInterval StandardConnectionTimeoutPeriod;
 extern const CGFloat DisabledButtonAlpha;
 
-// Login notification names
-extern NSString *const LoginNotification;
-extern NSString *const LogoutNotification;
-
 // NSUserDefault keys
 extern NSString *const LoginInformationStoredKey;
 extern NSString *const StoredUsernameKey;

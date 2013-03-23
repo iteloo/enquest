@@ -26,6 +26,8 @@ SYNTHESIZE_GOD(QuestManager, sharedManager);
         
         /** check regionMonitoringAvailable and authorizationStatus **/
         
+        /** tmp **/
+        
         
     }
     return self;

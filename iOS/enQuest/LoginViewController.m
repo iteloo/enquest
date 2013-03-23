@@ -7,8 +7,10 @@
 //
 
 #import "LoginViewController.h"
-#import "LoginManager.h"
-#import "RegistrationTurtle.h"
+#import "CoreDataManager.h"
+#import "StackMob.h"
+#import "User.h"
+#import "UserManager.h"
 
 @interface LoginViewController ()
 
@@ -50,25 +52,49 @@
 
 - (IBAction)login:(id)sender
 {
-    LoginManager *manager = [LoginManager sharedManager];
-    manager.delegate = self;
-    [manager loginWithUsername:username_field.text password:password_field.text];
+    SMClient *client = [SMClient defaultClient];
+    NSString *username = self.username_field.text;
+    NSString *password = self.password_field.text;
+    
+    [client loginWithUsername:username password:password onSuccess:^(NSDictionary *results) {
+        
+        NSLog(@"Login Success %@ with results:", results);
+        
+        /* Uncomment the following if you are using Core Data integration and want to retrieve a managed object representation of the user object.  Store the resulting object or object ID for future use.
+         
+         Be sure to declare variables you are referencing in this block with the __block storage type modifier, including the managedObjectContext property.
+         */
+        
+        NSFetchRequest *userFetch = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+        [userFetch setPredicate:[NSPredicate predicateWithFormat:@"username == %@", [results objectForKey:@"username"]]];
+        NSManagedObjectContext *context = [CoreDataManager sharedManager].managedObjectContext;
+        [context executeFetchRequest:userFetch onSuccess:^(NSArray *results) {
+            User *user = [results lastObject];
+            [[UserManager sharedManager] setCurrentUser:user password:password];
+            
+            // dismiss login screen
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+        } onFailure:^(NSError *error) {
+            NSLog(@"Error fetching user object: %@", error);
+        }];
+        
+    } onFailure:^(NSError *error) {
+        
+        NSLog(@"Login Failed: %@",error);
+        
+        // re-enable button
+        loginButton.enabled = YES;
+        loginButton.alpha = 1.0;
+        
+        // display alert
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login was unsuccessful." message:[error.userInfo objectForKey:@"error_description"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }];
+    
+    // disable button
     loginButton.enabled = NO;
     loginButton.alpha = DisabledButtonAlpha;
-}
-
-- (void)loginDidFinish
-{
-    NSLog(@"...dismissLoginScreen");
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)loginDidFailWithError:(NSError *)error
-{
-    loginButton.enabled = YES;
-    loginButton.alpha = 1.0;
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login was unsuccessful." message:@"Please check your username and password." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
 }
 
 - (void)registerNewUser:(id)sender
@@ -85,42 +111,48 @@
         return;
     }
     
-    RegistrationTurtle *t = [[RegistrationTurtle alloc] init];
-    t.delegate = self;
-    [t registerWithUsername:u password:p email:e];
+    NSManagedObjectContext *context = [CoreDataManager sharedManager].managedObjectContext;
+    User *newUser = [[User alloc] initIntoManagedObjectContext:context];
+    newUser.username = u;
+    newUser.password = p;
+    newUser.email = e;
+    [context saveOnSuccess:^{
+        
+        /* clear registration textfields */
+        self.reg_username_field.text = @"";
+        self.reg_password_field.text = @"";
+        self.reg_confirm_password_field.text = @"";
+        self.reg_email_field.text = @"";
+        
+        /* re-enable button */
+        registerButton.enabled = YES;
+        registerButton.alpha = 1.0;
+        
+        /* present alert to notify success */
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Registration successful! Please login above.",@"Title for alert displayed when registration is successful.") message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        
+    } onFailure:^(NSError *error) {
+        
+        /*
+         One optional way to handle an unsuccessful save of a managed object is to delete the object altogether from the managed object context.  For example, you probably won't try to keep saving a user object that returns a duplicate key error. If you delete a user managed object that hasn't been saved yet, you must remove the password you originally set using the removePassword: method.
+         */
+        
+        [context deleteObject:newUser];
+        [newUser removePassword];
+        
+        /* re-enable button */
+        registerButton.enabled = YES;
+        registerButton.alpha = 1.0;
+        
+        /* present alert */
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }];
     
     /* disable button */
     registerButton.enabled = NO;
     registerButton.alpha = DisabledButtonAlpha;
-}
-
-- (void)registrationTurtleDidFinishRegister:(RegistrationTurtle*)turtle
-{
-    /* clear registration textfields */
-    self.reg_username_field.text = @"";
-    self.reg_password_field.text = @"";
-    self.reg_confirm_password_field.text = @"";
-    self.reg_email_field.text = @"";
-    
-    /* re-enable button */
-    registerButton.enabled = YES;
-    registerButton.alpha = 1.0;
-    
-    /* present alert to notify success */
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Registration successful! Please login above.",@"Title for alert displayed when registration is successful.") message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
-}
-
-- (void)registrationTurtleDidFailRegister:(RegistrationTurtle*)turtle withError:(NSError *)error
-{
-    
-    /* re-enable button */
-    registerButton.enabled = YES;
-    registerButton.alpha = 1.0;
-
-    /* present alert */
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
 }
 
 - (void)didReceiveMemoryWarning

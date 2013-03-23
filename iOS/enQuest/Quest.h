@@ -2,17 +2,28 @@
 //  Quest.h
 //  enQuest
 //
-//  Created by Leo on 03/21/13.
+//  Created by Leo on 03/22/13.
 //  Copyright (c) 2013 iteloolab. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Quest : NSObject
+@class Site;
 
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSDate *creationDate;
-@property (nonatomic, strong) NSMutableArray *sites;
+@interface Quest : NSManagedObject
 
+@property (nonatomic, retain) NSString * initialNote;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) Site *destination;
+@property (nonatomic, retain) NSSet *sites;
+@end
+
+@interface Quest (CoreDataGeneratedAccessors)
+
+- (void)addSitesObject:(Site *)value;
+- (void)removeSitesObject:(Site *)value;
+- (void)addSites:(NSSet *)values;
+- (void)removeSites:(NSSet *)values;
 
 @end

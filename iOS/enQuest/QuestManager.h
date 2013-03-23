@@ -10,7 +10,7 @@
 
 @interface QuestManager : NSObject <CLLocationManagerDelegate>
 
-@property (nonatomic, strong) NSArray *quests;
+@property (nonatomic, strong) NSMutableArray *quests;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
 + (QuestManager *)sharedManager;

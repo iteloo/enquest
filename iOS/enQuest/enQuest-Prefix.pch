@@ -14,4 +14,7 @@
     #import "Constants.h"
     #import <CoreLocation/CoreLocation.h>
     #import <MapKit/MapKit.h>
+    #import <CoreData/CoreData.h>
+    #import <SystemConfiguration/SystemConfiguration.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
 #endif

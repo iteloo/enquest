@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LoginManagerDelegate.h"
 
-@interface SettingsViewController : UITableViewController <LoginManagerDelegate>
+@interface SettingsViewController : UITableViewController
 
 
 @property(nonatomic, strong) IBOutlet UILabel *loginStatus;

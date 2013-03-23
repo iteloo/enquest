@@ -7,8 +7,9 @@
 //
 
 #import "SettingsViewController.h"
-#import "LoginManager.h"
-#import "LoginManagerDelegate.h"
+#import "StackMob.h"
+#import "UserManager.h"
+#import "RootViewController.h"
 
 @interface SettingsViewController ()
 
@@ -31,47 +32,45 @@
 {
     [super viewDidLoad];
     [self updateLoginField];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLoginField) name:LoginNotification object:nil];
 }
 
 - (void)updateLoginField
 {
-    LoginManager *manager = [LoginManager sharedManager];
-    if (manager.status == LoggedIn) {
+    /**if (manager.status == LoggedIn) {
         self.loginStatus.text = [NSString stringWithFormat:@"Logged in as %@.", manager.username];
     } else {
         self.loginStatus.text = nil;
-    }
+    }**/
 }
 
 - (IBAction)logout:(id)sender
 {
-    LoginManager *manager = [LoginManager sharedManager];
-    manager.delegate = self;
-    [manager logout];
+    [[SMClient defaultClient] logoutOnSuccess:^(NSDictionary *result) {
+        [UserManager sharedManager].currentUser = nil;
+        NSLog(@"Success, you are logged out");
+        /* re-enable logout button */
+        logoutButton.enabled = YES;
+        logoutButton.alpha = 1.0;
+        
+        // present login screen again
+        /** perhaps move to notification **/
+        RootViewController *rootViewController = (RootViewController*)[UIApplication sharedApplication].delegate.window.rootViewController;
+        [rootViewController displayLoginScreen];
+        
+    } onFailure:^(NSError *error) {
+        NSLog(@"Logout Fail: %@",error);
+        /** present some kind of alert **/
+        /** need to wait for better error handling objects **/
+        
+        /* re-enable logout button */
+        logoutButton.enabled = YES;
+        logoutButton.alpha = 1.0;
+    }];
     
     /* disable logout button */
     logoutButton.enabled = NO;
     logoutButton.alpha = DisabledButtonAlpha;
 }
-
-- (void)logoutDidFinish
-{
-    /* re-enable logout button */
-    logoutButton.enabled = YES;
-    logoutButton.alpha = 1.0;
-}
-
-- (void)logoutDidFailWithError:(NSError *)error
-{
-    /** present some kind of alert **/
-    /** need to wait for better error handling objects **/
-    
-    /* re-enable logout button */
-    logoutButton.enabled = YES;
-    logoutButton.alpha = 1.0;
-}
-
 
 - (void)didReceiveMemoryWarning
 {

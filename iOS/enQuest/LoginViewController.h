@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RegistrationTurtleDelegate.h"
-#import "LoginManagerDelegate.h"
 
-@interface LoginViewController : UIViewController <RegistrationTurtleDelegate, UITextFieldDelegate, LoginManagerDelegate>
+@interface LoginViewController : UIViewController <UITextFieldDelegate>
 
 - (IBAction)login:(id)sender;
 - (IBAction)registerNewUser:(id)sender;

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LoginManagerDelegate.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, LoginManagerDelegate>
+@class SMClient;
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) SMClient *client;
 
 @end

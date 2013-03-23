@@ -16,9 +16,6 @@ NSString *const EQErrorDomain = @"com.iteloolab.enQuest.ErrorDomain";
 const NSTimeInterval StandardConnectionTimeoutPeriod = 7.0;
 const CGFloat DisabledButtonAlpha = 0.5;
 
-NSString *const LoginNotification = @"LoginNotification";
-NSString *const LogoutNotification = @"LogoutNotification";
-
 NSString *const LoginInformationStoredKey = @"LoginInformationStoredKey";
 NSString *const StoredUsernameKey = @"StoredUsernameKey";
 NSString *const StoredPasswordKey = @"StoredPasswordKey";
