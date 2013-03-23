@@ -53,6 +53,7 @@
 		03BCE66516F11BBC00FCA1BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCE63516F11BBC00FCA1BF /* Foundation.framework */; };
 		03BCE66D16F11BBC00FCA1BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03BCE66B16F11BBC00FCA1BF /* InfoPlist.strings */; };
 		03BCE67016F11BBC00FCA1BF /* enQuestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BCE66F16F11BBC00FCA1BF /* enQuestTests.m */; };
+		03CDC6E316FE50780088D16C /* DraftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CDC6E216FE50780088D16C /* DraftViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +183,9 @@
 		03BCE66E16F11BBC00FCA1BF /* enQuestTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enQuestTests.h; sourceTree = "<group>"; };
 		03BCE66F16F11BBC00FCA1BF /* enQuestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = enQuestTests.m; sourceTree = "<group>"; };
 		03BCE68716F1333700FCA1BF /* SYNTHESIZE_GOD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYNTHESIZE_GOD.h; sourceTree = "<group>"; };
+		03CDC6E116FE50780088D16C /* DraftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftViewController.h; sourceTree = "<group>"; };
+		03CDC6E216FE50780088D16C /* DraftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftViewController.m; sourceTree = "<group>"; };
+		03CDC6E416FE56000088D16C /* CoreDataMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataMacros.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +366,8 @@
 				035EDC1316F3FA5C000D54BF /* RootViewController.m */,
 				03BCE64E16F11BBC00FCA1BF /* LoginViewController.h */,
 				03BCE64F16F11BBC00FCA1BF /* LoginViewController.m */,
+				03CDC6E116FE50780088D16C /* DraftViewController.h */,
+				03CDC6E216FE50780088D16C /* DraftViewController.m */,
 				037875D716F1ADA000F6195F /* SettingsViewController.h */,
 				037875D816F1ADA100F6195F /* SettingsViewController.m */,
 				035EDC0F16F3EF73000D54BF /* QuestViewController.h */,
@@ -422,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				03BCE68716F1333700FCA1BF /* SYNTHESIZE_GOD.h */,
+				03CDC6E416FE56000088D16C /* CoreDataMacros.h */,
 			);
 			name = Macros;
 			sourceTree = "<group>";
@@ -563,6 +570,7 @@
 				03221D8116FD78CD0061A830 /* CoreDataManager.m in Sources */,
 				03221D8416FD814B0061A830 /* User.m in Sources */,
 				03221D8716FD865B0061A830 /* UserManager.m in Sources */,
+				03CDC6E316FE50780088D16C /* DraftViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

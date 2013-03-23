@@ -12,7 +12,16 @@
 
 @implementation DraftQuest
 
-@dynamic creationDate;
-@dynamic author;
+@dynamic draftquestId;
+
+- (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
+    
+    if (self = [super initWithEntity:entity insertIntoManagedObjectContext:context]) {
+        [self setValue:[self assignObjectId] forKey:[self primaryKeyField]];
+    }
+    
+    return self;
+}
 
 @end

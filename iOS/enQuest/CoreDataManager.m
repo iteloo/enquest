@@ -12,7 +12,7 @@
 
 @implementation CoreDataManager
 
-@synthesize managedObjectContext = _managedObjectContext;
+@synthesize dump = _dump;
 @synthesize managedObjectModel = _managedObjectModel;
 
 SYNTHESIZE_GOD(CoreDataManager, sharedManager);
@@ -21,7 +21,7 @@ SYNTHESIZE_GOD(CoreDataManager, sharedManager);
 {
     SMClient *client = [SMClient defaultClient];
     SMCoreDataStore *coreDataStore = [client coreDataStoreWithManagedObjectModel:self.managedObjectModel];
-    self.managedObjectContext = [coreDataStore contextForCurrentThread];
+    self.dump = [coreDataStore contextForCurrentThread];
 }
 
 - (NSManagedObjectModel *)managedObjectModel

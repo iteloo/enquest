@@ -17,4 +17,5 @@
     #import <CoreData/CoreData.h>
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
+    #import "CoreDataMacros.h"
 #endif

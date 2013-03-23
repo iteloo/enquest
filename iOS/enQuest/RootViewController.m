@@ -55,7 +55,7 @@
                 
                 NSFetchRequest *userFetch = [[NSFetchRequest alloc] initWithEntityName:@"User"];
                 [userFetch setPredicate:[NSPredicate predicateWithFormat:@"username == %@", [results objectForKey:@"username"]]];
-                NSManagedObjectContext *context = [CoreDataManager sharedManager].managedObjectContext;
+                NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
                 [context executeFetchRequest:userFetch onSuccess:^(NSArray *results) {
                     User *user = [results lastObject];
                     [[UserManager sharedManager] setCurrentUser:user password:password];

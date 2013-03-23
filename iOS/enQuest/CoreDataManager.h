@@ -10,7 +10,7 @@
 
 @interface CoreDataManager : NSObject
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext *dump;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 
 + (CoreDataManager *)sharedManager;
