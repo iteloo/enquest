@@ -3,6 +3,7 @@
     <entity name="DraftQuest" representedClassName="DraftQuest" parentEntity="Quest" syncable="YES">
         <attribute name="createddate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="draftquestId" attributeType="String" syncable="YES"/>
+        <attribute name="lastmoddate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="drafts" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Game" representedClassName="Game" syncable="YES">
@@ -13,13 +14,13 @@
     </entity>
     <entity name="PublishedQuest" representedClassName="PublishedQuest" parentEntity="Quest" syncable="YES">
         <attribute name="publishDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="questDescription" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="publishedQuests" inverseEntity="User" syncable="YES"/>
         <relationship name="games" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Game" inverseName="quest" inverseEntity="Game" syncable="YES"/>
     </entity>
     <entity name="Quest" representedClassName="Quest" isAbstract="YES" syncable="YES">
         <attribute name="initialNote" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" defaultValueString="Untitled" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="questDescription" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="destination" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Site" inverseName="destinationOf" inverseEntity="Site" syncable="YES"/>
         <relationship name="sites" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Site" inverseName="quest" inverseEntity="Site" syncable="YES"/>
     </entity>
@@ -51,10 +52,10 @@
         <relationship name="site" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Site" inverseName="visits" inverseEntity="Site" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DraftQuest" positionX="25" positionY="215" width="128" height="88"/>
+        <element name="DraftQuest" positionX="25" positionY="215" width="128" height="105"/>
         <element name="Game" positionX="376" positionY="405" width="128" height="103"/>
-        <element name="PublishedQuest" positionX="-9" positionY="342" width="128" height="103"/>
-        <element name="Quest" positionX="-153" positionY="161" width="128" height="103"/>
+        <element name="PublishedQuest" positionX="-9" positionY="342" width="128" height="88"/>
+        <element name="Quest" positionX="-153" positionY="161" width="128" height="118"/>
         <element name="Site" positionX="-405" positionY="252" width="128" height="178"/>
         <element name="User" positionX="198" positionY="162" width="128" height="146"/>
         <element name="Visit" positionX="97" positionY="500" width="128" height="103"/>

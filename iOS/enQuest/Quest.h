@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSString * initialNote;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * questDescription;
 @property (nonatomic, retain) Site *destination;
 @property (nonatomic, retain) NSSet *sites;
 @end

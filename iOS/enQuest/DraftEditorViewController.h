@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TextFieldInputViewController.h"
 
-@interface DraftEditorViewController : UITableViewController
+@class DraftQuest;
+
+@interface DraftEditorViewController : UITableViewController <TextFieldInputViewControllerDelegate>
+
+@property (nonatomic, strong) DraftQuest *draft;
+@property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *questDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *questNoteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sitesLabel;
+
+// used to keep track of which cell is being edited
+@property (weak, nonatomic) UITableViewCell *editingCell;
+
 
 @end

@@ -14,6 +14,7 @@
 
 @dynamic initialNote;
 @dynamic name;
+@dynamic questDescription;
 @dynamic destination;
 @dynamic sites;
 

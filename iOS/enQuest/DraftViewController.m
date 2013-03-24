@@ -10,6 +10,7 @@
 #import "CoreDataManager.h"
 #import "DraftQuest.h"
 #import "StackMob.h"
+#import "DraftEditorViewController.h"
 
 @interface DraftViewController ()
 
@@ -32,26 +33,16 @@
 {
     [super viewDidLoad];
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    /** tmp for testing **/
-    NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
-    DraftQuest *newDraft = [[DraftQuest alloc] initIntoManagedObjectContext:context];
-    [context saveOnSuccess:^{
-        NSLog(@"New draft created");
-    } onFailure:^(NSError *error) {
-        [context deleteObject:newDraft];
-        
-        /* present alert */
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
-    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+    // attach draft to DraftViewController
+    UITableViewCell *senderCell = sender;
+    NSIndexPath *path = [self.tableView indexPathForCell:senderCell];
+    DraftEditorViewController *controller = segue.destinationViewController;
+    controller.draft = [self.fetchedResultsController objectAtIndexPath:path];
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -65,7 +56,7 @@
         CoreDataManager *dataManager = [CoreDataManager sharedManager];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"DraftQuest" inManagedObjectContext:dataManager.dump];
         /** change to createddate after solving key-value coding error **/
-        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createddate" ascending:NO];
+        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"lastmoddate" ascending:NO];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
         request.sortDescriptors = [NSArray arrayWithObjects:sort, nil];
@@ -84,7 +75,23 @@
 	return _fetchedResultsController;
 }
 
-- (IBAction)enterEditMode:(id)sender {
+- (IBAction)addNewDraft:(id)sender {
+    
+    //make new draft
+    NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
+    DraftQuest *newDraft = [[DraftQuest alloc] initIntoManagedObjectContext:context];
+    newDraft.name = @"Untitled Draft";
+    
+    //save (change will be picked up by fetchedResultsController?)
+    [context saveOnSuccess:^{
+        NSLog(@"New draft created");
+    } onFailure:^(NSError *error) {
+        [context deleteObject:newDraft];
+        
+        /* present alert */
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }];
 }
 
 #pragma mark -
@@ -110,7 +117,6 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
 	NSLog(@"in hist::controller:didChangeObject:...:");
     switch(type) {
-			
         case NSFetchedResultsChangeInsert:
 			NSLog(@"...Insert");
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationTop];
@@ -123,13 +129,12 @@
 			
         case NSFetchedResultsChangeUpdate:
 			NSLog(@"...Update");
-			/** implement **/
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
 			
         case NSFetchedResultsChangeMove:
 			NSLog(@"...Move");
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
             break;
     }
 }
@@ -140,6 +145,12 @@
 
 #pragma mark -
 #pragma mark UITableViewDataSource methods
+
+- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    DraftQuest *draft = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	cell.textLabel.text = draft.name;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [[self.fetchedResultsController sections] count];
@@ -158,9 +169,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
+    [self configureCell:cell atIndexPath:indexPath];
 	
-	DraftQuest *draft = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	cell.textLabel.text = draft.name;
     return cell;
 }
 
@@ -172,8 +182,15 @@
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		NSManagedObject *objToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
-		[[CoreDataManager sharedManager].dump deleteObject:objToDelete];
-		SAVE_TO_DUMP()
+		NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
+        [context deleteObject:objToDelete];
+		[context saveOnSuccess:^{
+            NSLog(@"draft deleted");
+        } onFailure:^(NSError *error) {
+            /* present alert */
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }];
     }
 }
 

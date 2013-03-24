@@ -15,7 +15,6 @@
 @interface PublishedQuest : Quest
 
 @property (nonatomic, retain) NSDate * publishDate;
-@property (nonatomic, retain) NSString * questDescription;
 @property (nonatomic, retain) User *author;
 @property (nonatomic, retain) NSSet *games;
 @end

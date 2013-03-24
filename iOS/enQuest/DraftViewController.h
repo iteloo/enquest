@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
-- (IBAction)enterEditMode:(id)sender;
+- (IBAction)addNewDraft:(id)sender;
 
 @end

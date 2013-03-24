@@ -14,7 +14,6 @@
 @implementation PublishedQuest
 
 @dynamic publishDate;
-@dynamic questDescription;
 @dynamic author;
 @dynamic games;
 
