@@ -13,6 +13,7 @@
 @implementation DraftQuest
 
 @dynamic draftquestId;
+@dynamic createddate;
 
 - (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context {
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:context];

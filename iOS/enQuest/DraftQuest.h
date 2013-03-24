@@ -15,7 +15,15 @@
 @interface DraftQuest : Quest
 
 @property (nonatomic, retain) NSString *draftquestId;
+@property (nonatomic, retain) NSDate *createddate;
 
 - (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context;
+
+@end
+
+@interface DraftQuest (CoreDataGeneratedAccessors)
+
+- (void)addAuthorObject:(User *)value;
+- (void)removeAuthorObject:(User *)value;
 
 @end

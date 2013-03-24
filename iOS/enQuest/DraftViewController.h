@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
+- (IBAction)enterEditMode:(id)sender;
+
 @end

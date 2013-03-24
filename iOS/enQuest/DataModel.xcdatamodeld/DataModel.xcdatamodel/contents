@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DraftQuest" representedClassName="DraftQuest" parentEntity="Quest" syncable="YES">
+        <attribute name="createddate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="draftquestId" attributeType="String" syncable="YES"/>
+        <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="drafts" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Game" representedClassName="Game" syncable="YES">
         <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -35,7 +37,7 @@
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="email" attributeType="String" syncable="YES"/>
         <attribute name="username" attributeType="String" syncable="YES"/>
-        <relationship name="drafts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DraftQuest" syncable="YES"/>
+        <relationship name="drafts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DraftQuest" inverseName="author" inverseEntity="DraftQuest" syncable="YES"/>
         <relationship name="games" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Game" inverseName="player" inverseEntity="Game" syncable="YES"/>
         <relationship name="publishedQuests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PublishedQuest" inverseName="author" inverseEntity="PublishedQuest" syncable="YES"/>
         <fetchedProperty name="activeGames" optional="YES" syncable="YES">
@@ -49,7 +51,7 @@
         <relationship name="site" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Site" inverseName="visits" inverseEntity="Site" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DraftQuest" positionX="25" positionY="215" width="128" height="58"/>
+        <element name="DraftQuest" positionX="25" positionY="215" width="128" height="88"/>
         <element name="Game" positionX="376" positionY="405" width="128" height="103"/>
         <element name="PublishedQuest" positionX="-9" positionY="342" width="128" height="103"/>
         <element name="Quest" positionX="-153" positionY="161" width="128" height="103"/>
