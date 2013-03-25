@@ -58,7 +58,7 @@
     
     [client loginWithUsername:username password:password onSuccess:^(NSDictionary *results) {
         
-        NSLog(@"Login Success %@ with results:", results);
+        NSLog(@"Login Success: %@", results);
         
         /* Uncomment the following if you are using Core Data integration and want to retrieve a managed object representation of the user object.  Store the resulting object or object ID for future use.
          
@@ -69,11 +69,14 @@
         [userFetch setPredicate:[NSPredicate predicateWithFormat:@"username == %@", [results objectForKey:@"username"]]];
         NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
         [context executeFetchRequest:userFetch onSuccess:^(NSArray *results) {
+            
             User *user = [results lastObject];
             [[UserManager sharedManager] setCurrentUser:user password:password];
             
             // dismiss login screen
             [self dismissViewControllerAnimated:YES completion:nil];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotification object:nil];
             
         } onFailure:^(NSError *error) {
             NSLog(@"Error fetching user object: %@", error);

@@ -12,6 +12,10 @@ extern const NSTimeInterval StandardConnectionTimeoutPeriod;
 extern const CGFloat DisabledButtonAlpha;
 
 // NSUserDefault keys
+extern NSString *const LoginNotification;
+extern NSString *const LogoutNotification;
+
+// NSUserDefault keys
 extern NSString *const LoginInformationStoredKey;
 extern NSString *const StoredUsernameKey;
 extern NSString *const StoredPasswordKey;

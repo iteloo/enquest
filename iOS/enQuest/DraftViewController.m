@@ -11,6 +11,7 @@
 #import "DraftQuest.h"
 #import "StackMob.h"
 #import "DraftEditorViewController.h"
+#import "UserManager.h"
 
 @interface DraftViewController ()
 
@@ -24,7 +25,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -32,7 +32,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogin) name:LoginNotification object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -42,6 +46,17 @@
     NSIndexPath *path = [self.tableView indexPathForCell:senderCell];
     DraftEditorViewController *controller = segue.destinationViewController;
     controller.draft = [self.fetchedResultsController objectAtIndexPath:path];
+}
+
+- (void)handleLogin
+{
+    NSLog(@"...deleting fetchedResultsController");
+    
+    // change fetchedResultsController
+    [NSFetchedResultsController deleteCacheWithName:self.fetchedResultsController.cacheName];
+    self.fetchedResultsController = nil;
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,14 +69,17 @@
     
     if (!_fetchedResultsController) {
         CoreDataManager *dataManager = [CoreDataManager sharedManager];
+        NSString *username = [UserManager sharedManager].currentUsername;
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"DraftQuest" inManagedObjectContext:dataManager.dump];
-        /** change to createddate after solving key-value coding error **/
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"lastmoddate" ascending:NO];
+        /** fix predicate problem of not getting local updates **/
+        NSPredicate *predicate = nil;
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
+        request.predicate = predicate;
         request.sortDescriptors = [NSArray arrayWithObjects:sort, nil];
         
-        NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:dataManager.dump sectionNameKeyPath:nil cacheName:@"Draft Results Cache"];
+        NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:dataManager.dump sectionNameKeyPath:nil cacheName:[NSString stringWithFormat:@"DraftCache:%@", username]];
         controller.delegate = self;
         
         NSError *error = nil;
@@ -80,6 +98,7 @@
     //make new draft
     NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
     DraftQuest *newDraft = [[DraftQuest alloc] initIntoManagedObjectContext:context];
+    newDraft.author = [UserManager sharedManager].currentUser;
     newDraft.name = @"Untitled Draft";
     
     //save (change will be picked up by fetchedResultsController?)
@@ -115,7 +134,7 @@
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-	NSLog(@"in hist::controller:didChangeObject:...:");
+	NSLog(@"in drafts::controller:didChangeObject:...:");
     switch(type) {
         case NSFetchedResultsChangeInsert:
 			NSLog(@"...Insert");
@@ -157,7 +176,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"%@",self.fetchedResultsController);
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    NSLog(@"%d",sectionInfo.numberOfObjects);
 	return sectionInfo.numberOfObjects;
 }
 

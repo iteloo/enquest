@@ -30,6 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.textField.borderStyle = UITextBorderStyleRoundedRect;
+    [self.textField becomeFirstResponder];
     self.textField.text = self.initialText;
 }
 

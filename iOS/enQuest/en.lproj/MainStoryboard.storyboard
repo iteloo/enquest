@@ -150,7 +150,10 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bac-yf-2Zr">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bac-yf-2Zr">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="fkd-iz-vzr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -159,7 +162,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Bac-yf-2Zr" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="5ef-Yi-V4d"/>
                             <constraint firstItem="Bac-yf-2Zr" firstAttribute="leading" secondItem="b68-kQ-ke8" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Byq-St-bcG"/>
-                            <constraint firstItem="Bac-yf-2Zr" firstAttribute="centerY" secondItem="b68-kQ-ke8" secondAttribute="centerY" type="default" id="dXS-Ny-kCi"/>
+                            <constraint firstItem="Bac-yf-2Zr" firstAttribute="top" secondItem="b68-kQ-ke8" secondAttribute="top" constant="83" id="dq9-SA-TnA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pn6-e2-u8D"/>
@@ -302,6 +305,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Edit Draft" id="RHc-t2-Nfd"/>
                     <connections>
+                        <outlet property="questDescriptionLabel" destination="jSM-cq-Wdd" id="EEw-ED-uIi"/>
                         <outlet property="questNameLabel" destination="Uto-I8-CJu" id="XrD-dp-0hY"/>
                         <outlet property="questNoteLabel" destination="yoq-6h-uHi" id="AJg-GB-j0c"/>
                         <outlet property="sitesLabel" destination="Rd1-tq-4W1" id="9dt-up-da2"/>
@@ -505,7 +509,7 @@
                                             <outlet property="delegate" destination="2" id="NPF-mm-nDc"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Don't have an account? Register here: " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="psa-hY-0lP">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Don't have an account? Register here: " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="281" translatesAutoresizingMaskIntoConstraints="NO" id="psa-hY-0lP">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="4fM-UW-Fx1"/>
                                         </constraints>

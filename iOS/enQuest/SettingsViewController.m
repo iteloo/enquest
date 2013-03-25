@@ -57,6 +57,8 @@
         RootViewController *rootViewController = (RootViewController*)[UIApplication sharedApplication].delegate.window.rootViewController;
         [rootViewController displayLoginScreen];
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:LogoutNotification object:nil];
+        
     } onFailure:^(NSError *error) {
         NSLog(@"Logout Fail: %@",error);
         /** present some kind of alert **/

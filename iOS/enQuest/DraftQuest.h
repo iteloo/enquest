@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString *draftquestId;
 @property (nonatomic, retain) NSDate *createddate;
 @property (nonatomic, retain) NSDate *lastmoddate;
+@property (nonatomic, retain) User *author;
 
 - (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context;
 

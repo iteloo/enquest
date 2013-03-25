@@ -15,6 +15,7 @@
 @dynamic draftquestId;
 @dynamic createddate;
 @dynamic lastmoddate;
+@dynamic author;
 
 - (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context {
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
