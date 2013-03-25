@@ -1,24 +1,24 @@
 //
-//  DraftViewController.m
+//  DraftSitesViewController.m
 //  enQuest
 //
 //  Created by Leo on 03/23/13.
 //  Copyright (c) 2013 iteloolab. All rights reserved.
 //
 
-#import "DraftViewController.h"
+#import "DraftSitesViewController.h"
 #import "CoreDataManager.h"
 #import "DraftQuest.h"
+#import "DraftSite.h"
 #import "StackMob.h"
-#import "DraftEditorViewController.h"
-#import "UserManager.h"
 
-@interface DraftViewController ()
+@interface DraftSitesViewController ()
 
 @end
 
-@implementation DraftViewController
+@implementation DraftSitesViewController
 
+@synthesize draft;
 @synthesize fetchedResultsController = _fetchedResultsController;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -32,27 +32,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogin) name:LoginNotification object:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // attach draft to DraftViewController
+    // attach site to DraftSiteViewController
     UITableViewCell *senderCell = sender;
     NSIndexPath *path = [self.tableView indexPathForCell:senderCell];
-    DraftEditorViewController *controller = segue.destinationViewController;
-    controller.draft = [self.fetchedResultsController objectAtIndexPath:path];
-}
-
-- (void)handleLogin
-{
-    NSLog(@"...deleting fetchedResultsController");
-    
-    // change fetchedResultsController
-    [NSFetchedResultsController deleteCacheWithName:self.fetchedResultsController.cacheName];
-    self.fetchedResultsController = nil;
-    
-    [self.tableView reloadData];
+    //DraftEditorViewController *controller = segue.destinationViewController;
+    //controller.draft = [self.fetchedResultsController objectAtIndexPath:path];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,11 +53,11 @@
     
     if (!_fetchedResultsController) {
         CoreDataManager *dataManager = [CoreDataManager sharedManager];
-        NSString *username = [UserManager sharedManager].currentUsername;
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"DraftQuest" inManagedObjectContext:dataManager.dump];
-        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"lastmoddate" ascending:NO];
-        /** fix problem of deletion when changing sites **/
-        NSPredicate *predicate = nil;//[NSPredicate predicateWithFormat:@"author == %@", username];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"DraftSite" inManagedObjectContext:dataManager.dump];
+        /** change sort method **/
+        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
+        /** fix predicate problem of not getting local updates **/
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"quest == %@", self.draft.draftquestId];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
         request.predicate = predicate;
@@ -80,7 +68,7 @@
         
         NSError *error = nil;
         if (![controller performFetch:&error]) {
-            NSLog(@"in draftView: fetchedResultsController");
+            NSLog(@"in siteView: fetchedResultsController");
             NSLog(@"...initial fetch failed with error: %@",error);
         }
         
@@ -89,27 +77,27 @@
 	return _fetchedResultsController;
 }
 
-- (IBAction)addNewDraft:(id)sender {
+- (IBAction)addNewDraftSite:(id)sender {
     
-    //make new draft
+    //make new site
     NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
-    DraftQuest *newDraft = [[DraftQuest alloc] initIntoManagedObjectContext:context];
-    newDraft.author = [UserManager sharedManager].currentUser;
-    newDraft.name = @"Untitled Draft";
+    DraftSite *newDraftSite = [[DraftSite alloc] initIntoManagedObjectContext:context];
+    newDraftSite.quest = self.draft;
+    newDraftSite.name = @"Untitled DraftSite";
     
     //save (change will be picked up by fetchedResultsController?)
     [context saveOnSuccess:^{
-        NSLog(@"New draft created");
+        NSLog(@"New site created");
         NSError *error = nil;
         if (![self.fetchedResultsController performFetch:&error]) {
-            NSLog(@"in draftView: addNewDraft:");
+            NSLog(@"in siteView: addNewDraftSite:");
             NSLog(@"...new fetch failed with error: %@",error);
         }
         [self.tableView reloadData];
         
     } onFailure:^(NSError *error) {
-        [context deleteObject:newDraft];
-        NSLog(@"Error creating draft: %@", error);
+        [context deleteObject:newDraftSite];
+        NSLog(@"Error creating site: %@", error);
         
         /* present alert */
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -138,7 +126,7 @@
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-	NSLog(@"in drafts::controller:didChangeObject:...:");
+	NSLog(@"in sites::controller:didChangeObject:...:");
     switch(type) {
         case NSFetchedResultsChangeInsert:
 			NSLog(@"...Insert");
@@ -171,8 +159,8 @@
 
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    DraftQuest *draft = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	cell.textLabel.text = draft.name;
+    DraftSite *site = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	cell.textLabel.text = site.name;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -188,7 +176,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"DraftCell";
+    static NSString *CellIdentifier = @"DraftSiteCell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -218,5 +206,6 @@
         }];
     }
 }
+
 
 @end

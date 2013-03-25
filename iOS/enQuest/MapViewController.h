@@ -13,6 +13,6 @@
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) IBOutlet UIToolbar *toolbar;
 
-- (IBAction)createSite:(id)sender;
+- (IBAction)createDraftSite:(id)sender;
 
 @end

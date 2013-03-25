@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "Quest.h"
 
 @class Game, User;
 
-@interface PublishedQuest : Quest
+@interface PublishedQuest : NSManagedObject
 
 @property (nonatomic, retain) NSDate * publishDate;
 @property (nonatomic, retain) User *author;

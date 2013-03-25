@@ -10,6 +10,7 @@
 #import "DraftQuest.h"
 #import "CoreDataManager.h"
 #import "StackMob.h"
+#import "DraftSitesViewController.h"
 
 @interface DraftEditorViewController ()
 
@@ -76,6 +77,11 @@
         TextFieldInputViewController *controller = segue.destinationViewController;
         controller.initialText = self.editingCell.detailTextLabel.text;
         controller.delegate = self;
+    }
+    else if (senderCell.tag == 2)
+    {
+        DraftSitesViewController *controller = segue.destinationViewController;
+        controller.draft = self.draft;
     }
 }
 

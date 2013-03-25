@@ -8,16 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "Quest.h"
 
-@class User;
+@class User, DraftSite;
 
-@interface DraftQuest : Quest
+@interface DraftQuest : NSManagedObject
 
 @property (nonatomic, retain) NSString *draftquestId;
 @property (nonatomic, retain) NSDate *createddate;
 @property (nonatomic, retain) NSDate *lastmoddate;
 @property (nonatomic, retain) User *author;
+@property NSString *initialNote;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * questDescription;
+@property (nonatomic, retain) DraftSite *destination;
+@property (nonatomic, retain) NSSet *sites;
 
 - (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context;
 
@@ -27,5 +31,10 @@
 
 - (void)addAuthorObject:(User *)value;
 - (void)removeAuthorObject:(User *)value;
+
+- (void)addDraftSitesObject:(DraftSite *)value;
+- (void)removeDraftSitesObject:(DraftSite *)value;
+- (void)addDraftSites:(NSSet *)values;
+- (void)removeDraftSites:(NSSet *)values;
 
 @end

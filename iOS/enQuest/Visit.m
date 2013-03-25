@@ -8,7 +8,7 @@
 
 #import "Visit.h"
 #import "Game.h"
-#import "Site.h"
+#import "DraftSite.h"
 
 
 @implementation Visit

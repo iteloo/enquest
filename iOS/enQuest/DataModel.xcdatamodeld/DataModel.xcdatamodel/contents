@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="DraftQuest" representedClassName="DraftQuest" parentEntity="Quest" syncable="YES">
+    <entity name="DraftQuest" representedClassName="DraftQuest" syncable="YES">
         <attribute name="createddate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="draftquestId" attributeType="String" syncable="YES"/>
+        <attribute name="initialNote" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastmoddate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="questDescription" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="drafts" inverseEntity="User" syncable="YES"/>
+        <relationship name="destination" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DraftSite" inverseName="destinationOf" inverseEntity="DraftSite" syncable="YES"/>
+        <relationship name="sites" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DraftSite" inverseName="quest" inverseEntity="DraftSite" syncable="YES"/>
+    </entity>
+    <entity name="DraftSite" representedClassName="Site" syncable="YES">
+        <attribute name="draftsiteId" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="radius" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="dependencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DraftSite" inverseName="dependents" inverseEntity="DraftSite" syncable="YES"/>
+        <relationship name="dependents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DraftSite" inverseName="dependencies" inverseEntity="DraftSite" syncable="YES"/>
+        <relationship name="destinationOf" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DraftQuest" inverseName="destination" inverseEntity="DraftQuest" syncable="YES"/>
+        <relationship name="quest" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DraftQuest" inverseName="sites" inverseEntity="DraftQuest" syncable="YES"/>
     </entity>
     <entity name="Game" representedClassName="Game" syncable="YES">
         <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -12,28 +28,10 @@
         <relationship name="quest" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PublishedQuest" inverseName="games" inverseEntity="PublishedQuest" syncable="YES"/>
         <relationship name="visits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Visit" inverseName="game" inverseEntity="Visit" syncable="YES"/>
     </entity>
-    <entity name="PublishedQuest" representedClassName="PublishedQuest" parentEntity="Quest" syncable="YES">
+    <entity name="PublishedQuest" representedClassName="PublishedQuest" syncable="YES">
         <attribute name="publishDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="publishedQuests" inverseEntity="User" syncable="YES"/>
         <relationship name="games" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Game" inverseName="quest" inverseEntity="Game" syncable="YES"/>
-    </entity>
-    <entity name="Quest" representedClassName="Quest" isAbstract="YES" syncable="YES">
-        <attribute name="initialNote" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="questDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="destination" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Site" inverseName="destinationOf" inverseEntity="Site" syncable="YES"/>
-        <relationship name="sites" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Site" inverseName="quest" inverseEntity="Site" syncable="YES"/>
-    </entity>
-    <entity name="Site" representedClassName="Site" syncable="YES">
-        <attribute name="location" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="radius" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="dependencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Site" inverseName="dependents" inverseEntity="Site" syncable="YES"/>
-        <relationship name="dependents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Site" inverseName="dependencies" inverseEntity="Site" syncable="YES"/>
-        <relationship name="destinationOf" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Quest" inverseName="destination" inverseEntity="Quest" syncable="YES"/>
-        <relationship name="quest" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Quest" inverseName="sites" inverseEntity="Quest" syncable="YES"/>
-        <relationship name="visits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Visit" inverseName="site" inverseEntity="Visit" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="email" attributeType="String" syncable="YES"/>
@@ -49,15 +47,14 @@
         <attribute name="date" attributeType="Date" syncable="YES"/>
         <attribute name="log" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="game" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="visits" inverseEntity="Game" syncable="YES"/>
-        <relationship name="site" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Site" inverseName="visits" inverseEntity="Site" syncable="YES"/>
+        <relationship name="site" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DraftSite" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DraftQuest" positionX="25" positionY="215" width="128" height="105"/>
-        <element name="Game" positionX="376" positionY="405" width="128" height="105"/>
-        <element name="PublishedQuest" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="Quest" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Site" positionX="-405" positionY="252" width="128" height="180"/>
-        <element name="User" positionX="198" positionY="162" width="128" height="149"/>
+        <element name="DraftQuest" positionX="-252" positionY="113" width="128" height="178"/>
+        <element name="Game" positionX="486" positionY="246" width="128" height="105"/>
+        <element name="PublishedQuest" positionX="288" positionY="117" width="128" height="88"/>
+        <element name="DraftSite" positionX="-207" positionY="315" width="128" height="178"/>
+        <element name="User" positionX="63" positionY="265" width="128" height="149"/>
         <element name="Visit" positionX="97" positionY="500" width="128" height="103"/>
     </elements>
 </model>
