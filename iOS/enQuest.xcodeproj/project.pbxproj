@@ -56,6 +56,7 @@
 		03CDC6EA16FE6DFD0088D16C /* DraftEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CDC6E916FE6DFC0088D16C /* DraftEditorViewController.m */; };
 		03CDC6ED16FE77DF0088D16C /* DraftSitesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CDC6EC16FE77DF0088D16C /* DraftSitesViewController.m */; };
 		03CDC6F016FEA15D0088D16C /* TextFieldInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */; };
+		03FBB045170118DD001E2414 /* SiteEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FBB044170118DD001E2414 /* SiteEditorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,14 +83,14 @@
 		03221D3E16FD6AAB0061A830 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		03221D4116FD6BBC0061A830 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
 		03221D4316FD6BBC0061A830 /* AFHTTPClient+StackMob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPClient+StackMob.h"; sourceTree = "<group>"; };
-		03221D4416FD6BBC0061A830 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		03221D4416FD6BBC0061A830 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AFHTTPClient.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03221D4516FD6BBC0061A830 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		03221D4616FD6BBC0061A830 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
 		03221D4716FD6BBC0061A830 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
 		03221D4816FD6BBC0061A830 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		03221D4916FD6BBC0061A830 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
 		03221D4A16FD6BBC0061A830 /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
-		03221D4B16FD6BBC0061A830 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		03221D4B16FD6BBC0061A830 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AFURLConnectionOperation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03221D4C16FD6BBC0061A830 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
 		03221D4D16FD6BBC0061A830 /* Base64EncodedStringFromData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64EncodedStringFromData.h; sourceTree = "<group>"; };
 		03221D4E16FD6BBC0061A830 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -192,6 +193,8 @@
 		03CDC6EC16FE77DF0088D16C /* DraftSitesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftSitesViewController.m; sourceTree = "<group>"; };
 		03CDC6EE16FEA15A0088D16C /* TextFieldInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldInputViewController.h; sourceTree = "<group>"; };
 		03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldInputViewController.m; sourceTree = "<group>"; };
+		03FBB043170118DD001E2414 /* SiteEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteEditorViewController.h; sourceTree = "<group>"; };
+		03FBB044170118DD001E2414 /* SiteEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteEditorViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,10 +377,12 @@
 				03CDC6E216FE50780088D16C /* DraftViewController.m */,
 				03CDC6E816FE6DFC0088D16C /* DraftEditorViewController.h */,
 				03CDC6E916FE6DFC0088D16C /* DraftEditorViewController.m */,
-				03CDC6EE16FEA15A0088D16C /* TextFieldInputViewController.h */,
-				03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */,
 				03CDC6EB16FE77DE0088D16C /* DraftSitesViewController.h */,
 				03CDC6EC16FE77DF0088D16C /* DraftSitesViewController.m */,
+				03FBB043170118DD001E2414 /* SiteEditorViewController.h */,
+				03FBB044170118DD001E2414 /* SiteEditorViewController.m */,
+				03CDC6EE16FEA15A0088D16C /* TextFieldInputViewController.h */,
+				03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */,
 				037875D716F1ADA000F6195F /* SettingsViewController.h */,
 				037875D816F1ADA100F6195F /* SettingsViewController.m */,
 				035EDC0F16F3EF73000D54BF /* QuestViewController.h */,
@@ -583,6 +588,7 @@
 				03CDC6EA16FE6DFD0088D16C /* DraftEditorViewController.m in Sources */,
 				03CDC6ED16FE77DF0088D16C /* DraftSitesViewController.m in Sources */,
 				03CDC6F016FEA15D0088D16C /* TextFieldInputViewController.m in Sources */,
+				03FBB045170118DD001E2414 /* SiteEditorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

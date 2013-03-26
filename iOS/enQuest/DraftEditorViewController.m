@@ -37,6 +37,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     [self updateViewUsingData];
 }
 
@@ -45,7 +49,13 @@
     self.questNameLabel.text = self.draft.name;
     self.questDescriptionLabel.text = self.draft.questDescription;
     self.questNoteLabel.text = self.draft.initialNote;
-    self.sitesLabel.text = [NSString stringWithFormat:@"%d sites",[self.draft.sites count]];
+    NSUInteger numberOfSites = [self.draft.sites count];
+    if (numberOfSites != 1) {
+        self.sitesLabel.text = [NSString stringWithFormat:@"%d sites", numberOfSites];
+    }
+    else {
+        self.sitesLabel.text = @"1 site";
+    }
 }
 
 - (void)saveData
@@ -89,7 +99,6 @@
 {
     self.editingCell.detailTextLabel.text = text;
     self.editingCell = nil;
-    [self.tableView reloadData];
     [self saveData];
 }
 
@@ -97,14 +106,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidUnload {
-    [self setQuestNameLabel:nil];
-    [self setQuestDescriptionLabel:nil];
-    [self setQuestNoteLabel:nil];
-    [self setSitesLabel:nil];
-    [super viewDidUnload];
 }
 
 @end

@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) NSString *draftsiteId;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * note;
+@property (nonatomic, retain) NSString * dialogue;
 @property (nonatomic, retain) id location;
 @property (nonatomic, retain) NSNumber * radius;
 @property (nonatomic, retain) NSSet *dependencies;

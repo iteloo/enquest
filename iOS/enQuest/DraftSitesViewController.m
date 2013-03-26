@@ -11,6 +11,7 @@
 #import "DraftQuest.h"
 #import "DraftSite.h"
 #import "StackMob.h"
+#import "SiteEditorViewController.h"
 
 @interface DraftSitesViewController ()
 
@@ -36,11 +37,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // attach site to DraftSiteViewController
+    // attach site to SiteEditorViewController
     UITableViewCell *senderCell = sender;
     NSIndexPath *path = [self.tableView indexPathForCell:senderCell];
-    //DraftEditorViewController *controller = segue.destinationViewController;
-    //controller.draft = [self.fetchedResultsController objectAtIndexPath:path];
+    SiteEditorViewController *controller = segue.destinationViewController;
+    controller.site = [self.fetchedResultsController objectAtIndexPath:path];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,19 +86,36 @@
     newDraftSite.quest = self.draft;
     newDraftSite.name = @"Untitled DraftSite";
     
-    //save (change will be picked up by fetchedResultsController?)
-    [context saveOnSuccess:^{
-        NSLog(@"New site created");
-        NSError *error = nil;
-        if (![self.fetchedResultsController performFetch:&error]) {
-            NSLog(@"in siteView: addNewDraftSite:");
-            NSLog(@"...new fetch failed with error: %@",error);
-        }
-        [self.tableView reloadData];
+    [SMGeoPoint getGeoPointForCurrentLocationOnSuccess:^(SMGeoPoint *geoPoint) {
+        
+        newDraftSite.location = [NSKeyedArchiver archivedDataWithRootObject:geoPoint];
+        
+        /** test **/
+        SMGeoPoint *a = [NSKeyedUnarchiver unarchiveObjectWithData:newDraftSite.location];
+        NSLog(@"new location:%f,%f", [[a latitude] floatValue], [[a longitude] floatValue]);
+        
+        // save context
+        [context saveOnSuccess:^{
+            NSLog(@"New site created");
+            NSError *error = nil;
+            if (![self.fetchedResultsController performFetch:&error]) {
+                NSLog(@"in siteView: addNewDraftSite:");
+                NSLog(@"...new fetch failed with error: %@",error);
+            }
+            [self.tableView reloadData];
+            
+        } onFailure:^(NSError *error) {
+            [context deleteObject:newDraftSite];
+            NSLog(@"Error creating site: %@", error);
+            
+            /* present alert */
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }];
         
     } onFailure:^(NSError *error) {
+        NSLog(@"Error getting SMGeoPoint: %@", error);
         [context deleteObject:newDraftSite];
-        NSLog(@"Error creating site: %@", error);
         
         /* present alert */
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

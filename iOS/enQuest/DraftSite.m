@@ -15,7 +15,7 @@
 
 @dynamic draftsiteId;
 @dynamic name;
-@dynamic note;
+@dynamic dialogue;
 @dynamic location;
 @dynamic radius;
 @dynamic dependencies;
@@ -30,6 +30,7 @@
     
     if (self = [super initWithEntity:entity insertIntoManagedObjectContext:context]) {
         [self setValue:[self assignObjectId] forKey:[self primaryKeyField]];
+        self.radius = [NSNumber numberWithFloat:10.0];
     }
     
     return self;

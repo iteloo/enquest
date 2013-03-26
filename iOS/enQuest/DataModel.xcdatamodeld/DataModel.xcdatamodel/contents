@@ -12,10 +12,10 @@
         <relationship name="sites" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DraftSite" inverseName="quest" inverseEntity="DraftSite" syncable="YES"/>
     </entity>
     <entity name="DraftSite" representedClassName="Site" syncable="YES">
+        <attribute name="dialogue" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="draftsiteId" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="radius" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="dependencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DraftSite" inverseName="dependents" inverseEntity="DraftSite" syncable="YES"/>
         <relationship name="dependents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DraftSite" inverseName="dependencies" inverseEntity="DraftSite" syncable="YES"/>
@@ -51,9 +51,9 @@
     </entity>
     <elements>
         <element name="DraftQuest" positionX="-252" positionY="113" width="128" height="178"/>
+        <element name="DraftSite" positionX="-207" positionY="315" width="128" height="180"/>
         <element name="Game" positionX="486" positionY="246" width="128" height="105"/>
         <element name="PublishedQuest" positionX="288" positionY="117" width="128" height="88"/>
-        <element name="DraftSite" positionX="-207" positionY="315" width="128" height="178"/>
         <element name="User" positionX="63" positionY="265" width="128" height="149"/>
         <element name="Visit" positionX="97" positionY="500" width="128" height="103"/>
     </elements>
