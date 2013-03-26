@@ -14,6 +14,7 @@
 - (IBAction)registerNewUser:(id)sender;
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) IBOutlet UITextField *username_field;
 @property (strong, nonatomic) IBOutlet UITextField *password_field;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;

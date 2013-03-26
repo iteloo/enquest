@@ -33,6 +33,8 @@
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogin) name:LoginNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogout) name:LogoutNotification object:nil];
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -50,9 +52,14 @@
     
     // change fetchedResultsController
     [NSFetchedResultsController deleteCacheWithName:self.fetchedResultsController.cacheName];
-    self.fetchedResultsController = nil;
-    
+    /** need to make sure fetchcontroller is set up properly **/    
     [self.tableView reloadData];
+}
+
+- (void)handleLogout
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    self.fetchedResultsController = nil;
 }
 
 - (void)didReceiveMemoryWarning

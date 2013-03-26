@@ -57,6 +57,10 @@
 		03CDC6ED16FE77DF0088D16C /* DraftSitesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CDC6EC16FE77DF0088D16C /* DraftSitesViewController.m */; };
 		03CDC6F016FEA15D0088D16C /* TextFieldInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */; };
 		03FBB045170118DD001E2414 /* SiteEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FBB044170118DD001E2414 /* SiteEditorViewController.m */; };
+		03FBB04F17016636001E2414 /* map_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FBB04E17016636001E2414 /* map_icon.png */; };
+		03FBB05D17016928001E2414 /* draft_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FBB05C17016928001E2414 /* draft_icon.png */; };
+		03FBB05F1701698D001E2414 /* settings_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FBB05E1701698D001E2414 /* settings_icon.png */; };
+		03FBB061170169E0001E2414 /* quests_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FBB060170169E0001E2414 /* quests_icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,6 +199,10 @@
 		03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldInputViewController.m; sourceTree = "<group>"; };
 		03FBB043170118DD001E2414 /* SiteEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteEditorViewController.h; sourceTree = "<group>"; };
 		03FBB044170118DD001E2414 /* SiteEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteEditorViewController.m; sourceTree = "<group>"; };
+		03FBB04E17016636001E2414 /* map_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_icon.png; sourceTree = "<group>"; };
+		03FBB05C17016928001E2414 /* draft_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draft_icon.png; sourceTree = "<group>"; };
+		03FBB05E1701698D001E2414 /* settings_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_icon.png; sourceTree = "<group>"; };
+		03FBB060170169E0001E2414 /* quests_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quests_icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,16 +381,7 @@
 				035EDC1316F3FA5C000D54BF /* RootViewController.m */,
 				03BCE64E16F11BBC00FCA1BF /* LoginViewController.h */,
 				03BCE64F16F11BBC00FCA1BF /* LoginViewController.m */,
-				03CDC6E116FE50780088D16C /* DraftViewController.h */,
-				03CDC6E216FE50780088D16C /* DraftViewController.m */,
-				03CDC6E816FE6DFC0088D16C /* DraftEditorViewController.h */,
-				03CDC6E916FE6DFC0088D16C /* DraftEditorViewController.m */,
-				03CDC6EB16FE77DE0088D16C /* DraftSitesViewController.h */,
-				03CDC6EC16FE77DF0088D16C /* DraftSitesViewController.m */,
-				03FBB043170118DD001E2414 /* SiteEditorViewController.h */,
-				03FBB044170118DD001E2414 /* SiteEditorViewController.m */,
-				03CDC6EE16FEA15A0088D16C /* TextFieldInputViewController.h */,
-				03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */,
+				03FBB04917015BB2001E2414 /* Editing */,
 				037875D716F1ADA000F6195F /* SettingsViewController.h */,
 				037875D816F1ADA100F6195F /* SettingsViewController.m */,
 				035EDC0F16F3EF73000D54BF /* QuestViewController.h */,
@@ -405,8 +404,12 @@
 				03BCE68616F1332400FCA1BF /* Macros */,
 				035EDC2416F50342000D54BF /* wow_icon_large.png */,
 				035EDC2516F50342000D54BF /* wow_icon_small.png */,
+				03FBB05C17016928001E2414 /* draft_icon.png */,
+				03FBB060170169E0001E2414 /* quests_icon.png */,
+				03FBB04E17016636001E2414 /* map_icon.png */,
 				03BCE65116F11BBC00FCA1BF /* first.png */,
 				03BCE65316F11BBC00FCA1BF /* first@2x.png */,
+				03FBB05E1701698D001E2414 /* settings_icon.png */,
 				03BCE65816F11BBC00FCA1BF /* second.png */,
 				03BCE65A16F11BBC00FCA1BF /* second@2x.png */,
 				03BCE63B16F11BBC00FCA1BF /* enQuest-Info.plist */,
@@ -446,6 +449,23 @@
 				03CDC6E416FE56000088D16C /* CoreDataMacros.h */,
 			);
 			name = Macros;
+			sourceTree = "<group>";
+		};
+		03FBB04917015BB2001E2414 /* Editing */ = {
+			isa = PBXGroup;
+			children = (
+				03CDC6E116FE50780088D16C /* DraftViewController.h */,
+				03CDC6E216FE50780088D16C /* DraftViewController.m */,
+				03CDC6E816FE6DFC0088D16C /* DraftEditorViewController.h */,
+				03CDC6E916FE6DFC0088D16C /* DraftEditorViewController.m */,
+				03CDC6EB16FE77DE0088D16C /* DraftSitesViewController.h */,
+				03CDC6EC16FE77DF0088D16C /* DraftSitesViewController.m */,
+				03FBB043170118DD001E2414 /* SiteEditorViewController.h */,
+				03FBB044170118DD001E2414 /* SiteEditorViewController.m */,
+				03CDC6EE16FEA15A0088D16C /* TextFieldInputViewController.h */,
+				03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */,
+			);
+			name = Editing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -532,6 +552,10 @@
 				035EDC2616F50342000D54BF /* wow_icon_large.png in Resources */,
 				035EDC2716F50342000D54BF /* wow_icon_small.png in Resources */,
 				03221D7416FD6BBC0061A830 /* CHANGELOG.md in Resources */,
+				03FBB04F17016636001E2414 /* map_icon.png in Resources */,
+				03FBB05D17016928001E2414 /* draft_icon.png in Resources */,
+				03FBB05F1701698D001E2414 /* settings_icon.png in Resources */,
+				03FBB061170169E0001E2414 /* quests_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

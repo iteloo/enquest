@@ -47,8 +47,9 @@
     }
 }
 
-- (void)viewDidUnload {
-    [self setTextField:nil];
-    [super viewDidUnload];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.navigationController popViewControllerAnimated:YES];
+    return YES;
 }
+
 @end

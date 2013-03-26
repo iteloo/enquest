@@ -32,10 +32,10 @@
     [super viewDidLoad];
     
     // add user tracking bar button
-    MKUserTrackingBarButtonItem *trackingItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:mapView];
-    NSMutableArray *items = [NSMutableArray arrayWithArray:toolbar.items ];
+    MKUserTrackingBarButtonItem *trackingItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
+    NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items ];
     [items insertObject:trackingItem atIndex:0];
-    [toolbar setItems:items];
+    [self.toolbar setItems:items animated:NO];
 }
 
 /** tmp: choose quest to add to **/

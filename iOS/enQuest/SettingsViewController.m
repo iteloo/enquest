@@ -32,15 +32,13 @@
 {
     [super viewDidLoad];
     [self updateLoginField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLoginField) name:LoginNotification object:nil];
 }
 
 - (void)updateLoginField
 {
-    /**if (manager.status == LoggedIn) {
-        self.loginStatus.text = [NSString stringWithFormat:@"Logged in as %@.", manager.username];
-    } else {
-        self.loginStatus.text = nil;
-    }**/
+    NSString *username = [UserManager sharedManager].currentUsername;
+    self.loginStatus.text = [NSString stringWithFormat:@"Logged in as %@.", username];
 }
 
 - (IBAction)logout:(id)sender
@@ -51,6 +49,9 @@
         /* re-enable logout button */
         logoutButton.enabled = YES;
         logoutButton.alpha = 1.0;
+        
+        // reset login status label (for safety; not technically needed since login page will block everything)
+        self.loginStatus.text = @"You are not logged in.";
         
         // present login screen again
         /** perhaps move to notification **/

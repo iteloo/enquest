@@ -19,6 +19,7 @@
 @implementation LoginViewController
 
 @synthesize scrollView;
+@synthesize contentView;
 @synthesize username_field;
 @synthesize password_field;
 @synthesize loginButton;
@@ -32,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     
     // create gesture recognizer to dismiss keyboard
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -55,6 +58,12 @@
     SMClient *client = [SMClient defaultClient];
     NSString *username = self.username_field.text;
     NSString *password = self.password_field.text;
+    
+    // disable button and textfields
+    self.loginButton.enabled = NO;
+    self.loginButton.alpha = DisabledButtonAlpha;
+    self.username_field.enabled = NO;
+    self.password_field.enabled = NO;
     
     [client loginWithUsername:username password:password onSuccess:^(NSDictionary *results) {
         
@@ -86,18 +95,16 @@
         
         NSLog(@"Login Failed: %@",error);
         
-        // re-enable button
-        loginButton.enabled = YES;
-        loginButton.alpha = 1.0;
+        // re-enable button and textfields
+        self.loginButton.enabled = YES;
+        self.loginButton.alpha = 1.0;
+        self.username_field.enabled = YES;
+        self.password_field.enabled = YES;
         
         // display alert
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login was unsuccessful." message:[error.userInfo objectForKey:@"error_description"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     }];
-    
-    // disable button
-    loginButton.enabled = NO;
-    loginButton.alpha = DisabledButtonAlpha;
 }
 
 - (void)registerNewUser:(id)sender
@@ -119,6 +126,15 @@
     newUser.username = u;
     newUser.password = p;
     newUser.email = e;
+    
+    /* disable button */
+    self.self.registerButton.enabled = NO;
+    self.registerButton.alpha = DisabledButtonAlpha;
+    self.reg_username_field.enabled = NO;
+    self.reg_password_field.enabled = NO;
+    self.reg_confirm_password_field.enabled = NO;
+    self.reg_email_field.enabled = NO;
+    
     [context saveOnSuccess:^{
         
         /* clear registration textfields */
@@ -127,9 +143,13 @@
         self.reg_confirm_password_field.text = @"";
         self.reg_email_field.text = @"";
         
-        /* re-enable button */
-        registerButton.enabled = YES;
-        registerButton.alpha = 1.0;
+        /* re-enable button and text field */
+        self.registerButton.enabled = YES;
+        self.registerButton.alpha = 1.0;
+        self.reg_username_field.enabled = YES;
+        self.reg_password_field.enabled = YES;
+        self.reg_confirm_password_field.enabled = YES;
+        self.reg_email_field.enabled = YES;
         
         /* present alert to notify success */
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Registration successful! Please login above.",@"Title for alert displayed when registration is successful.") message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -137,6 +157,7 @@
         
     } onFailure:^(NSError *error) {
         
+        NSLog(@"failed to register: %@", error);
         /*
          One optional way to handle an unsuccessful save of a managed object is to delete the object altogether from the managed object context.  For example, you probably won't try to keep saving a user object that returns a duplicate key error. If you delete a user managed object that hasn't been saved yet, you must remove the password you originally set using the removePassword: method.
          */
@@ -144,18 +165,18 @@
         [context deleteObject:newUser];
         [newUser removePassword];
         
-        /* re-enable button */
-        registerButton.enabled = YES;
-        registerButton.alpha = 1.0;
+        /* re-enable button and textfield */
+        self.registerButton.enabled = YES;
+        self.registerButton.alpha = 1.0;
+        self.reg_username_field.enabled = YES;
+        self.reg_password_field.enabled = YES;
+        self.reg_confirm_password_field.enabled = YES;
+        self.reg_email_field.enabled = YES;
         
         /* present alert */
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot register user" message:[error.userInfo objectForKey:@"error_description"]  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     }];
-    
-    /* disable button */
-    registerButton.enabled = NO;
-    registerButton.alpha = DisabledButtonAlpha;
 }
 
 - (void)didReceiveMemoryWarning
@@ -192,12 +213,12 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    activeField = textField;
+    self.activeField = textField;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    activeField = nil;
+    self.activeField = nil;
 }
 
 #pragma mark keyboard management
@@ -238,4 +259,8 @@
     [UIView commitAnimations];
 }
 
+- (void)viewDidUnload {
+    [self setContentView:nil];
+    [super viewDidUnload];
+}
 @end
