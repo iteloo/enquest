@@ -12,6 +12,7 @@
 #import "CoreDataManager.h"
 #import "TextFieldInputViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "DependenciesViewController.h"
 
 @interface SiteEditorViewController ()
 
@@ -52,10 +53,16 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     UITableViewCell *senderCell = sender;
-    self.editingCell = senderCell;
-    TextFieldInputViewController *controller = segue.destinationViewController;
-    controller.delegate = self;
-    controller.initialText = senderCell.detailTextLabel.text;
+
+    if (senderCell.tag == 1) {
+        self.editingCell = senderCell;
+        TextFieldInputViewController *controller = segue.destinationViewController;
+        controller.delegate = self;
+        controller.initialText = senderCell.detailTextLabel.text;
+    } else if (senderCell.tag == 2) {
+        DependenciesViewController *controllers = segue.destinationViewController;
+        controllers.site = self.site;
+    }
 }
 
 - (void)updateViewUsingData;
