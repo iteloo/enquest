@@ -21,7 +21,6 @@
 @property (nonatomic, retain) NSSet *dependencies;
 @property (nonatomic, retain) NSSet *dependents;
 @property (nonatomic, retain) DraftQuest *quest;
-@property (nonatomic, retain) NSSet *visits;
 @property (nonatomic, retain) DraftQuest *destinationOf;
 
 - (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context;
@@ -40,10 +39,5 @@
 - (void)removeDependentsObject:(DraftSite *)value;
 - (void)addDependents:(NSSet *)values;
 - (void)removeDependents:(NSSet *)values;
-
-- (void)addVisitsObject:(NSManagedObject *)value;
-- (void)removeVisitsObject:(NSManagedObject *)value;
-- (void)addVisits:(NSSet *)values;
-- (void)removeVisits:(NSSet *)values;
 
 @end

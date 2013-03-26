@@ -185,6 +185,47 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="Sbv-Ly-tOd">
+                            <rect key="frame" x="0.0" y="220" width="320" height="134"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x0C-7s-pub">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Publish!">
+                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="publish:" destination="1iq-S8-xJs" eventType="touchUpInside" id="tUH-Zp-sIs"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcB-Rk-d6f">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Discard Draft">
+                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="discard:" destination="1iq-S8-xJs" eventType="touchUpInside" id="vGH-Fk-okd"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="OcB-Rk-d6f" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="87q-8m-MXL"/>
+                                <constraint firstItem="x0C-7s-pub" firstAttribute="leading" secondItem="Sbv-Ly-tOd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="AcR-Ft-ewd"/>
+                                <constraint firstItem="OcB-Rk-d6f" firstAttribute="leading" secondItem="Sbv-Ly-tOd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GMV-n8-QZw"/>
+                                <constraint firstAttribute="trailing" secondItem="x0C-7s-pub" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="QaA-22-xYP"/>
+                                <constraint firstAttribute="trailing" secondItem="OcB-Rk-d6f" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="es7-ae-IBh"/>
+                                <constraint firstItem="x0C-7s-pub" firstAttribute="top" secondItem="Sbv-Ly-tOd" secondAttribute="top" constant="20" symbolic="YES" type="default" id="yit-fL-iaC"/>
+                            </constraints>
+                        </view>
                         <sections>
                             <tableViewSection id="Ehs-03-noY">
                                 <cells>
@@ -308,6 +349,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Edit Draft" id="RHc-t2-Nfd"/>
                     <connections>
+                        <outlet property="discardButton" destination="OcB-Rk-d6f" id="Giu-zF-gSV"/>
+                        <outlet property="publishButton" destination="x0C-7s-pub" id="59w-4k-4fJ"/>
                         <outlet property="questDescriptionLabel" destination="jSM-cq-Wdd" id="EEw-ED-uIi"/>
                         <outlet property="questNameLabel" destination="Uto-I8-CJu" id="XrD-dp-0hY"/>
                         <outlet property="questNoteLabel" destination="yoq-6h-uHi" id="AJg-GB-j0c"/>
@@ -365,6 +408,24 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="TPB-i2-Esh">
+                            <rect key="frame" x="0.0" y="210" width="320" height="233"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DeI-Zs-Y72">
+                                    <connections>
+                                        <outlet property="delegate" destination="dxl-oc-7PE" id="spt-5n-JAf"/>
+                                    </connections>
+                                </mapView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="DeI-Zs-Y72" secondAttribute="trailing" constant="10" type="user" id="Ycr-yh-x4x"/>
+                                <constraint firstItem="DeI-Zs-Y72" firstAttribute="top" secondItem="TPB-i2-Esh" secondAttribute="top" constant="20" symbolic="YES" type="default" id="aIF-jN-zSZ"/>
+                                <constraint firstAttribute="bottom" secondItem="DeI-Zs-Y72" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="hp0-V8-HNQ"/>
+                                <constraint firstItem="DeI-Zs-Y72" firstAttribute="leading" secondItem="TPB-i2-Esh" secondAttribute="leading" constant="10" type="user" id="v44-Pq-OoM"/>
+                            </constraints>
+                        </view>
                         <sections>
                             <tableViewSection footerTitle="" id="Gcb-Wh-vXm">
                                 <cells>
@@ -460,34 +521,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection footerTitle="" id="zEf-ka-LRz">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="226" id="mFb-bD-6rI">
-                                        <rect key="frame" x="0.0" y="220" width="320" height="228"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="225"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <mapView multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Lbf-45-b6p">
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="221" id="NT3-U0-hIk"/>
-                                                        <constraint firstAttribute="width" constant="296" id="wYJ-FB-v9M"/>
-                                                    </constraints>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="dxl-oc-7PE" id="PUb-JL-wKI"/>
-                                                    </connections>
-                                                </mapView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="Lbf-45-b6p" firstAttribute="centerY" secondItem="mFb-bD-6rI" secondAttribute="centerY" type="default" id="CpT-km-Cvh"/>
-                                            <constraint firstItem="Lbf-45-b6p" firstAttribute="centerX" secondItem="mFb-bD-6rI" secondAttribute="centerX" type="default" id="LhQ-sB-ptE"/>
-                                        </constraints>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="dxl-oc-7PE" id="vIx-K2-UFi"/>
@@ -498,7 +531,7 @@
                     <connections>
                         <outlet property="coordinateLabel" destination="Zxd-6P-17j" id="BJz-B4-Ukg"/>
                         <outlet property="dialogueLabel" destination="eXj-3k-log" id="9vf-8c-4uo"/>
-                        <outlet property="mapView" destination="Lbf-45-b6p" id="bcu-Qe-LXt"/>
+                        <outlet property="mapView" destination="DeI-Zs-Y72" id="MCn-38-9wf"/>
                         <outlet property="radiusLabel" destination="2pU-mU-8g3" id="bqR-mE-B6d"/>
                         <outlet property="siteNameLabel" destination="Rvz-Dr-BEN" id="e0D-Jm-5I1"/>
                     </connections>
@@ -527,12 +560,12 @@
         <scene sceneID="jEj-bB-bvH">
             <objects>
                 <viewController id="k3d-I8-som" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Nud-Qk-8Mx">
+                    <view key="view" contentMode="scaleToFill" id="Gh6-C3-1xt">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="bGp-Zt-WoL"/>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loggin in..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39i-Wi-W8t">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="GrK-wC-IEW"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loggin in..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkz-0c-Ig4">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -540,10 +573,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="39i-Wi-W8t" firstAttribute="centerX" secondItem="bGp-Zt-WoL" secondAttribute="centerX" type="default" id="biv-al-0Zg"/>
-                            <constraint firstItem="bGp-Zt-WoL" firstAttribute="centerX" secondItem="Nud-Qk-8Mx" secondAttribute="centerX" type="default" id="dJh-Nm-nig"/>
-                            <constraint firstItem="bGp-Zt-WoL" firstAttribute="centerY" secondItem="Nud-Qk-8Mx" secondAttribute="centerY" type="default" id="j2Z-Jw-cy4"/>
-                            <constraint firstItem="39i-Wi-W8t" firstAttribute="top" secondItem="bGp-Zt-WoL" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="oCS-B9-GzI"/>
+                            <constraint firstItem="hkz-0c-Ig4" firstAttribute="centerX" secondItem="GrK-wC-IEW" secondAttribute="centerX" type="default" id="QEU-b6-GiL"/>
+                            <constraint firstItem="GrK-wC-IEW" firstAttribute="centerX" secondItem="Gh6-C3-1xt" secondAttribute="centerX" type="default" id="T55-So-yeG"/>
+                            <constraint firstItem="GrK-wC-IEW" firstAttribute="top" secondItem="Gh6-C3-1xt" secondAttribute="top" constant="255" id="VuR-R1-VTW"/>
+                            <constraint firstItem="hkz-0c-Ig4" firstAttribute="top" secondItem="GrK-wC-IEW" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="zTq-R2-wxY"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -631,7 +664,7 @@
                                                     <outlet property="delegate" destination="2" id="NPF-mm-nDc"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Don't have an account? Register here: " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="281" translatesAutoresizingMaskIntoConstraints="NO" id="psa-hY-0lP">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Don't have an account? Register here: " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="psa-hY-0lP">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="51" id="4fM-UW-Fx1"/>
                                                 </constraints>
@@ -673,11 +706,11 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="sfI-tw-POL" secondAttribute="bottom" constant="-152" id="4BF-Og-dZW"/>
                                     <constraint firstItem="sfI-tw-POL" firstAttribute="trailing" secondItem="aJ6-Qa-IBi" secondAttribute="trailing" type="default" id="WDC-Wz-oUH"/>
-                                    <constraint firstItem="sfI-tw-POL" firstAttribute="top" secondItem="aJ6-Qa-IBi" secondAttribute="top" type="default" id="bod-NV-spF"/>
+                                    <constraint firstAttribute="bottom" secondItem="sfI-tw-POL" secondAttribute="bottom" constant="-152" id="hUn-Yd-n8B"/>
                                     <constraint firstItem="sfI-tw-POL" firstAttribute="centerX" secondItem="aJ6-Qa-IBi" secondAttribute="centerX" type="default" id="mfQ-NS-Csq"/>
                                     <constraint firstItem="sfI-tw-POL" firstAttribute="leading" secondItem="aJ6-Qa-IBi" secondAttribute="leading" type="default" id="oc6-5n-IRU"/>
+                                    <constraint firstItem="sfI-tw-POL" firstAttribute="top" secondItem="aJ6-Qa-IBi" secondAttribute="top" type="default" id="tan-DB-fow"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -824,94 +857,12 @@
         <image name="quests_icon.png" width="30" height="30"/>
         <image name="settings_icon.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="DraftEditorViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DraftEditorViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="questDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questNoteLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sitesLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DraftSitesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DraftSitesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewDraftSite:"/>
-            </relationships>
-        </class>
-        <class className="DraftViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DraftViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewDraft:"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="login:"/>
-                <relationship kind="action" name="registerNewUser:"/>
-                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="password_field" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="reg_confirm_password_field" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="reg_email_field" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="reg_password_field" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="reg_username_field" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="registerButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="username_field" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createDraftSite:"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="QuestViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestViewController.h"/>
-        </class>
-        <class className="RootViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="logout:"/>
-                <relationship kind="outlet" name="loginStatus" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoutButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="SiteEditorViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SiteEditorViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="coordinateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dialogueLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="radiusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="siteNameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TextFieldInputViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TextFieldInputViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="delegate"/>
-                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hdo-Io-wWg"/>
+        <segue reference="I1A-EW-teE"/>
     </inferredMetricsTieBreakers>
 </document>

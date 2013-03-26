@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "StackMob.h"
 
-@class DraftQuest, Game, PublishedQuest;
+@class DraftQuest, Game, Quest;
 
 @interface User : SMUserManagedObject
 
@@ -36,8 +36,8 @@
 - (void)addDrafts:(NSSet *)values;
 - (void)removeDrafts:(NSSet *)values;
 
-- (void)addPublishedQuestsObject:(PublishedQuest *)value;
-- (void)removePublishedQuestsObject:(PublishedQuest *)value;
+- (void)addPublishedQuestsObject:(Quest *)value;
+- (void)removePublishedQuestsObject:(Quest *)value;
 - (void)addPublishedQuests:(NSSet *)values;
 - (void)removePublishedQuests:(NSSet *)values;
 

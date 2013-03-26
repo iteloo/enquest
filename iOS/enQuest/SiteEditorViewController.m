@@ -11,6 +11,7 @@
 #import "StackMob.h"
 #import "CoreDataManager.h"
 #import "TextFieldInputViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SiteEditorViewController ()
 
@@ -33,6 +34,13 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.mapView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.mapView.layer.borderWidth = 3.0f;
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -22,5 +22,10 @@
 // used to keep track of which cell is being edited
 @property (weak, nonatomic) UITableViewCell *editingCell;
 
+@property (weak, nonatomic) IBOutlet UIButton *publishButton;
+@property (weak, nonatomic) IBOutlet UIButton *discardButton;
+
+- (IBAction)publish:(id)sender;
+- (IBAction)discard:(id)sender;
 
 @end

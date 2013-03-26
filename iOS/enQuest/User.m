@@ -9,7 +9,7 @@
 #import "User.h"
 #import "DraftQuest.h"
 #import "Game.h"
-#import "PublishedQuest.h"
+#import "Quest.h"
 
 
 @implementation User
