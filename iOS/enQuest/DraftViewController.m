@@ -12,6 +12,7 @@
 #import "StackMob.h"
 #import "DraftEditorViewController.h"
 #import "UserManager.h"
+#import "QuestCell.h"
 
 @interface DraftViewController ()
 
@@ -179,7 +180,11 @@
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     DraftQuest *draft = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	cell.textLabel.text = draft.name;
+    QuestCell *questCell = (QuestCell*)cell;
+    questCell.questNameLabel.text = draft.name;
+    questCell.questDescriptionLabel.text = draft.questDescription;
+    NSUInteger numberOfSites = [draft.sites count];
+    questCell.metaDataLabel.text = [NSString stringWithFormat:(numberOfSites==1 ? @"%d site" : @"%d sites"), numberOfSites];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

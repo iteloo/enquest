@@ -53,11 +53,6 @@
         // reset login status label (for safety; not technically needed since login page will block everything)
         self.loginStatus.text = @"You are not logged in.";
         
-        // present login screen again
-        /** perhaps move to notification **/
-        RootViewController *rootViewController = (RootViewController*)[UIApplication sharedApplication].delegate.window.rootViewController;
-        [rootViewController displayLoginScreen];
-        
         [[NSNotificationCenter defaultCenter] postNotificationName:LogoutNotification object:nil];
         
     } onFailure:^(NSError *error) {

@@ -32,12 +32,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tabBar.hidden = YES;
+    self.view.frame = self.view.superview.bounds;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogout) name:LogoutNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    
     UserManager *userManager = [UserManager sharedManager];
     if (!userManager.currentUser) {
         if (userManager.currentUsername) {
@@ -89,8 +91,18 @@
             NSLog(@"...Cannot retrieve login info.");
             [self displayLoginScreen];
         }
-
+        
     }
+}
+
+- (void)handleLogout
+{
+    [self displayLoginScreen];
+}
+
+- (void)switchToViewControllerWithTag:(NSInteger)tag
+{
+    self.selectedIndex = tag;
 }
 
 - (void)displayLoginScreen

@@ -21,6 +21,16 @@
 		03221D8116FD78CD0061A830 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03221D8016FD78CD0061A830 /* CoreDataManager.m */; };
 		03221D8416FD814B0061A830 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 03221D8316FD814B0061A830 /* User.m */; };
 		03221D8716FD865B0061A830 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03221D8616FD865B0061A830 /* UserManager.m */; };
+		0332100617027F9D00E8DB95 /* SidePanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0332100517027F9D00E8DB95 /* SidePanelViewController.m */; };
+		0332100917027FA700E8DB95 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0332100817027FA700E8DB95 /* LeftViewController.m */; };
+		0332100B17027FE100E8DB95 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0332100A17027FE100E8DB95 /* QuartzCore.framework */; };
+		033210101702FC7900E8DB95 /* QuestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0332100F1702FC7900E8DB95 /* QuestCell.m */; };
+		033503F717030BAC00D98566 /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033503F617030BAC00D98566 /* HighlightingTextView.m */; };
+		033503FC17030D2800D98566 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 033503FB17030D2800D98566 /* MenuCell.m */; };
+		033503FF170311E300D98566 /* cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 033503FE170311E300D98566 /* cell_bg.png */; };
+		033504031703134A00D98566 /* map_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 033504021703134A00D98566 /* map_icon.png */; };
+		03350408170316C100D98566 /* settings_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03350406170316C100D98566 /* settings_icon.png */; };
+		03350409170316C100D98566 /* settings_icon_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 03350407170316C100D98566 /* settings_icon_white.png */; };
 		0352ECF616FCF65D00874FD2 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0352ECF416FCF65D00874FD2 /* DataModel.xcdatamodeld */; };
 		035EDC1116F3EF74000D54BF /* QuestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035EDC1016F3EF73000D54BF /* QuestViewController.m */; };
 		035EDC1416F3FA5C000D54BF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035EDC1316F3FA5C000D54BF /* RootViewController.m */; };
@@ -57,9 +67,7 @@
 		03CDC6ED16FE77DF0088D16C /* DraftSitesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CDC6EC16FE77DF0088D16C /* DraftSitesViewController.m */; };
 		03CDC6F016FEA15D0088D16C /* TextFieldInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */; };
 		03FBB045170118DD001E2414 /* SiteEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FBB044170118DD001E2414 /* SiteEditorViewController.m */; };
-		03FBB04F17016636001E2414 /* map_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FBB04E17016636001E2414 /* map_icon.png */; };
 		03FBB05D17016928001E2414 /* draft_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FBB05C17016928001E2414 /* draft_icon.png */; };
-		03FBB05F1701698D001E2414 /* settings_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FBB05E1701698D001E2414 /* settings_icon.png */; };
 		03FBB061170169E0001E2414 /* quests_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FBB060170169E0001E2414 /* quests_icon.png */; };
 		FCADF620B9BF4452A27C8000 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D5FF424B1A4D55A5D67273 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -99,6 +107,21 @@
 		03221D8316FD814B0061A830 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		03221D8516FD865B0061A830 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
 		03221D8616FD865B0061A830 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		0332100417027F9D00E8DB95 /* SidePanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidePanelViewController.h; sourceTree = "<group>"; };
+		0332100517027F9D00E8DB95 /* SidePanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidePanelViewController.m; sourceTree = "<group>"; };
+		0332100717027FA700E8DB95 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		0332100817027FA700E8DB95 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
+		0332100A17027FE100E8DB95 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0332100E1702FC7900E8DB95 /* QuestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestCell.h; sourceTree = "<group>"; };
+		0332100F1702FC7900E8DB95 /* QuestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestCell.m; sourceTree = "<group>"; };
+		033503F517030BAC00D98566 /* HighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightingTextView.h; sourceTree = "<group>"; };
+		033503F617030BAC00D98566 /* HighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightingTextView.m; sourceTree = "<group>"; };
+		033503FA17030D2800D98566 /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
+		033503FB17030D2800D98566 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
+		033503FE170311E300D98566 /* cell_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_bg.png; sourceTree = "<group>"; };
+		033504021703134A00D98566 /* map_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_icon.png; sourceTree = "<group>"; };
+		03350406170316C100D98566 /* settings_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_icon.png; sourceTree = "<group>"; };
+		03350407170316C100D98566 /* settings_icon_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_icon_white.png; sourceTree = "<group>"; };
 		0352ECF516FCF65D00874FD2 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		035EDC0F16F3EF73000D54BF /* QuestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestViewController.h; sourceTree = "<group>"; };
 		035EDC1016F3EF73000D54BF /* QuestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestViewController.m; sourceTree = "<group>"; };
@@ -154,9 +177,7 @@
 		03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldInputViewController.m; sourceTree = "<group>"; };
 		03FBB043170118DD001E2414 /* SiteEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteEditorViewController.h; sourceTree = "<group>"; };
 		03FBB044170118DD001E2414 /* SiteEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteEditorViewController.m; sourceTree = "<group>"; };
-		03FBB04E17016636001E2414 /* map_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_icon.png; sourceTree = "<group>"; };
 		03FBB05C17016928001E2414 /* draft_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draft_icon.png; sourceTree = "<group>"; };
-		03FBB05E1701698D001E2414 /* settings_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_icon.png; sourceTree = "<group>"; };
 		03FBB060170169E0001E2414 /* quests_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quests_icon.png; sourceTree = "<group>"; };
 		6FE4DD4F0F704D73AACE9D16 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		D5D5FF424B1A4D55A5D67273 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0332100B17027FE100E8DB95 /* QuartzCore.framework in Frameworks */,
 				03221D7B16FD6C150061A830 /* MobileCoreServices.framework in Frameworks */,
 				03221D7916FD6C0D0061A830 /* SystemConfiguration.framework in Frameworks */,
 				03221D7716FD6C030061A830 /* Security.framework in Frameworks */,
@@ -214,6 +236,19 @@
 			name = "Data Models";
 			sourceTree = "<group>";
 		};
+		033503FD17030D3200D98566 /* Custom UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				0332100E1702FC7900E8DB95 /* QuestCell.h */,
+				0332100F1702FC7900E8DB95 /* QuestCell.m */,
+				033503F517030BAC00D98566 /* HighlightingTextView.h */,
+				033503F617030BAC00D98566 /* HighlightingTextView.m */,
+				033503FA17030D2800D98566 /* MenuCell.h */,
+				033503FB17030D2800D98566 /* MenuCell.m */,
+			);
+			name = "Custom UI Elements";
+			sourceTree = "<group>";
+		};
 		035EDC0C16F2F84B000D54BF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +285,7 @@
 		03BCE63216F11BBC00FCA1BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0332100A17027FE100E8DB95 /* QuartzCore.framework */,
 				03221D7A16FD6C140061A830 /* MobileCoreServices.framework */,
 				03221D7816FD6C0D0061A830 /* SystemConfiguration.framework */,
 				03221D7616FD6C030061A830 /* Security.framework */,
@@ -272,17 +308,22 @@
 				0352ECF416FCF65D00874FD2 /* DataModel.xcdatamodeld */,
 				03BCE64216F11BBC00FCA1BF /* AppDelegate.h */,
 				03BCE64316F11BBC00FCA1BF /* AppDelegate.m */,
+				0332100417027F9D00E8DB95 /* SidePanelViewController.h */,
+				0332100517027F9D00E8DB95 /* SidePanelViewController.m */,
+				0332100717027FA700E8DB95 /* LeftViewController.h */,
+				0332100817027FA700E8DB95 /* LeftViewController.m */,
 				035EDC1216F3FA5B000D54BF /* RootViewController.h */,
 				035EDC1316F3FA5C000D54BF /* RootViewController.m */,
 				03BCE64E16F11BBC00FCA1BF /* LoginViewController.h */,
 				03BCE64F16F11BBC00FCA1BF /* LoginViewController.m */,
-				03FBB04917015BB2001E2414 /* Editing */,
+				03FBB04917015BB2001E2414 /* Draft Editing */,
 				037875D716F1ADA000F6195F /* SettingsViewController.h */,
 				037875D816F1ADA100F6195F /* SettingsViewController.m */,
 				035EDC0F16F3EF73000D54BF /* QuestViewController.h */,
 				035EDC1016F3EF73000D54BF /* QuestViewController.m */,
 				03836BFB16FBE57F004EED6B /* MapViewController.h */,
 				03836BFC16FBE57F004EED6B /* MapViewController.m */,
+				033503FD17030D3200D98566 /* Custom UI Elements */,
 				035EDC0C16F2F84B000D54BF /* Helpers */,
 				032C739E16FC2A7800840696 /* Data Models */,
 				03BCE63A16F11BBC00FCA1BF /* Supporting Files */,
@@ -296,14 +337,16 @@
 				035EDC1516F42CA2000D54BF /* Constants.h */,
 				035EDC1A16F44D41000D54BF /* Constants.m */,
 				03BCE68616F1332400FCA1BF /* Macros */,
+				033503FE170311E300D98566 /* cell_bg.png */,
+				03350406170316C100D98566 /* settings_icon.png */,
+				03350407170316C100D98566 /* settings_icon_white.png */,
 				035EDC2416F50342000D54BF /* wow_icon_large.png */,
 				035EDC2516F50342000D54BF /* wow_icon_small.png */,
 				03FBB05C17016928001E2414 /* draft_icon.png */,
 				03FBB060170169E0001E2414 /* quests_icon.png */,
-				03FBB04E17016636001E2414 /* map_icon.png */,
+				033504021703134A00D98566 /* map_icon.png */,
 				03BCE65116F11BBC00FCA1BF /* first.png */,
 				03BCE65316F11BBC00FCA1BF /* first@2x.png */,
-				03FBB05E1701698D001E2414 /* settings_icon.png */,
 				03BCE65816F11BBC00FCA1BF /* second.png */,
 				03BCE65A16F11BBC00FCA1BF /* second@2x.png */,
 				03BCE63B16F11BBC00FCA1BF /* enQuest-Info.plist */,
@@ -345,7 +388,7 @@
 			name = Macros;
 			sourceTree = "<group>";
 		};
-		03FBB04917015BB2001E2414 /* Editing */ = {
+		03FBB04917015BB2001E2414 /* Draft Editing */ = {
 			isa = PBXGroup;
 			children = (
 				03CDC6E116FE50780088D16C /* DraftViewController.h */,
@@ -361,7 +404,7 @@
 				03CDC6EE16FEA15A0088D16C /* TextFieldInputViewController.h */,
 				03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */,
 			);
-			name = Editing;
+			name = "Draft Editing";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,10 +491,12 @@
 				03BCE65B16F11BBC00FCA1BF /* second@2x.png in Resources */,
 				035EDC2616F50342000D54BF /* wow_icon_large.png in Resources */,
 				035EDC2716F50342000D54BF /* wow_icon_small.png in Resources */,
-				03FBB04F17016636001E2414 /* map_icon.png in Resources */,
 				03FBB05D17016928001E2414 /* draft_icon.png in Resources */,
-				03FBB05F1701698D001E2414 /* settings_icon.png in Resources */,
 				03FBB061170169E0001E2414 /* quests_icon.png in Resources */,
+				033503FF170311E300D98566 /* cell_bg.png in Resources */,
+				033504031703134A00D98566 /* map_icon.png in Resources */,
+				03350408170316C100D98566 /* settings_icon.png in Resources */,
+				03350409170316C100D98566 /* settings_icon_white.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +570,11 @@
 				030ACA9F17021689000F5C62 /* Site.m in Sources */,
 				030ACAA2170216ED000F5C62 /* Quest.m in Sources */,
 				030ACAA517022C20000F5C62 /* DependenciesViewController.m in Sources */,
+				0332100617027F9D00E8DB95 /* SidePanelViewController.m in Sources */,
+				0332100917027FA700E8DB95 /* LeftViewController.m in Sources */,
+				033210101702FC7900E8DB95 /* QuestCell.m in Sources */,
+				033503F717030BAC00D98566 /* HighlightingTextView.m in Sources */,
+				033503FC17030D2800D98566 /* MenuCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

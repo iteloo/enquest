@@ -13,5 +13,6 @@
 @property (nonatomic, strong) UIViewController *waitScreen;
 
 - (void)displayLoginScreen;
+- (void)switchToViewControllerWithTag:(NSInteger)tag;
 
 @end
