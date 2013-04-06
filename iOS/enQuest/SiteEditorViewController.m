@@ -7,7 +7,7 @@
 //
 
 #import "SiteEditorViewController.h"
-#import "DraftSite.h"
+#import "Site.h"
 #import "StackMob.h"
 #import "CoreDataManager.h"
 #import "TextFieldInputViewController.h"

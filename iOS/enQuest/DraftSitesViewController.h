@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class DraftQuest;
+@class Quest;
 
 @interface DraftSitesViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong) DraftQuest *draft;
+@property (nonatomic, strong) Quest *draft;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 

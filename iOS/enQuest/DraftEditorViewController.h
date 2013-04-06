@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "TextFieldInputViewController.h"
 
-@class DraftQuest;
+@class Quest;
 
 @interface DraftEditorViewController : UITableViewController <TextFieldInputViewControllerDelegate>
 
-@property (nonatomic, strong) DraftQuest *draft;
+@property (nonatomic, strong) Quest *draft;
 @property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *questDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *questNoteLabel;

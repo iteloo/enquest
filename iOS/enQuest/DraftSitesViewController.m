@@ -8,8 +8,8 @@
 
 #import "DraftSitesViewController.h"
 #import "CoreDataManager.h"
-#import "DraftQuest.h"
-#import "DraftSite.h"
+#import "Quest.h"
+#import "Site.h"
 #import "StackMob.h"
 #import "SiteEditorViewController.h"
 
@@ -54,11 +54,11 @@
     
     if (!_fetchedResultsController) {
         CoreDataManager *dataManager = [CoreDataManager sharedManager];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"DraftSite" inManagedObjectContext:dataManager.dump];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Site" inManagedObjectContext:dataManager.dump];
         /** change sort method **/
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
         /** fix predicate problem of not getting local updates **/
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"quest == %@", self.draft.draftquestId];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"quest == %@", self.draft.questId];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
         request.predicate = predicate;
@@ -78,20 +78,20 @@
 	return _fetchedResultsController;
 }
 
-- (IBAction)addNewDraftSite:(id)sender {
+- (IBAction)addNewSite:(id)sender {
     
     //make new site
     NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
-    DraftSite *newDraftSite = [[DraftSite alloc] initIntoManagedObjectContext:context];
-    newDraftSite.quest = self.draft;
-    newDraftSite.name = @"Untitled DraftSite";
+    Site *newSite = [[Site alloc] initIntoManagedObjectContext:context];
+    newSite.quest = self.draft;
+    newSite.name = @"Untitled Site";
     
     [SMGeoPoint getGeoPointForCurrentLocationOnSuccess:^(SMGeoPoint *geoPoint) {
         
-        newDraftSite.location = [NSKeyedArchiver archivedDataWithRootObject:geoPoint];
+        newSite.location = [NSKeyedArchiver archivedDataWithRootObject:geoPoint];
         
         /** test **/
-        SMGeoPoint *a = [NSKeyedUnarchiver unarchiveObjectWithData:newDraftSite.location];
+        SMGeoPoint *a = [NSKeyedUnarchiver unarchiveObjectWithData:newSite.location];
         NSLog(@"new location:%f,%f", [[a latitude] floatValue], [[a longitude] floatValue]);
         
         // save context
@@ -99,13 +99,13 @@
             NSLog(@"New site created");
             NSError *error = nil;
             if (![self.fetchedResultsController performFetch:&error]) {
-                NSLog(@"in siteView: addNewDraftSite:");
+                NSLog(@"in siteView: addNewSite:");
                 NSLog(@"...new fetch failed with error: %@",error);
             }
             [self.tableView reloadData];
             
         } onFailure:^(NSError *error) {
-            [context deleteObject:newDraftSite];
+            [context deleteObject:newSite];
             NSLog(@"Error creating site: %@", error);
             
             /* present alert */
@@ -115,7 +115,7 @@
         
     } onFailure:^(NSError *error) {
         NSLog(@"Error getting SMGeoPoint: %@", error);
-        [context deleteObject:newDraftSite];
+        [context deleteObject:newSite];
         
         /* present alert */
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -177,7 +177,7 @@
 
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    DraftSite *site = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Site *site = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	cell.textLabel.text = site.name;
 }
 

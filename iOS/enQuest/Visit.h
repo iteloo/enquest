@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Game, DraftSite;
+@class Game, Site;
 
 @interface Visit : NSManagedObject
 
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * log;
 @property (nonatomic, retain) Game *game;
-@property (nonatomic, retain) DraftSite *site;
+@property (nonatomic, retain) Site *site;
 
 @end

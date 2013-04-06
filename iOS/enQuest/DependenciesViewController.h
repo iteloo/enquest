@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class DraftSite;
+@class Site;
 
 @interface DependenciesViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
-@property (strong, nonatomic) DraftSite *site;
+@property (strong, nonatomic) Site *site;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 - (IBAction)addNewDependency:(id)sender;
 

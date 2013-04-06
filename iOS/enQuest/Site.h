@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Quest, Site, Visit, DraftSite;
+@class Quest, Site, Visit;
 
 @interface Site : NSManagedObject
 
@@ -24,7 +24,7 @@
 @property (nonatomic, retain) NSSet *dependents;
 @property (nonatomic, retain) NSSet *visits;
 
-- (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context withDraftSite:(DraftSite*)draftSite;
+- (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end
 

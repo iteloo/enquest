@@ -41,8 +41,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // attach draft to DraftViewController
-    UITableViewCell *senderCell = sender;
-    NSIndexPath *path = [self.tableView indexPathForCell:senderCell];
+    //UITableViewCell *senderCell = sender;
+    //NSIndexPath *path = [self.tableView indexPathForCell:senderCell];
     //DraftEditorViewController *controller = segue.destinationViewController;
     //controller.draft = [self.fetchedResultsController objectAtIndexPath:path];
 }
@@ -73,14 +73,15 @@
     
     if (!_fetchedResultsController) {
         CoreDataManager *dataManager = [CoreDataManager sharedManager];
-        NSString *username = [UserManager sharedManager].currentUsername;
+        //NSString *username = [UserManager sharedManager].currentUsername;
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Quest" inManagedObjectContext:dataManager.dump];
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"lastmoddate" ascending:NO];
         /** fix problem of deletion when changing sites **/
-        NSPredicate *predicate = nil;//[NSPredicate predicateWithFormat:@"author == %@", username];
+        //NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"author == %@", username];
+        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"published == %@", @"true"];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
-        request.predicate = predicate;
+        request.predicate = predicate2;
         request.sortDescriptors = [NSArray arrayWithObjects:sort, nil];
         
         NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:dataManager.dump sectionNameKeyPath:nil cacheName:nil];

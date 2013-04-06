@@ -11,8 +11,6 @@
 		030ACAA2170216ED000F5C62 /* Quest.m in Sources */ = {isa = PBXBuildFile; fileRef = 030ACAA1170216ED000F5C62 /* Quest.m */; };
 		030ACAA517022C20000F5C62 /* DependenciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030ACAA417022C20000F5C62 /* DependenciesViewController.m */; };
 		03221D2B16FD6A740061A830 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 03221D2A16FD6A740061A830 /* Game.m */; };
-		03221D3416FD6A740061A830 /* DraftQuest.m in Sources */ = {isa = PBXBuildFile; fileRef = 03221D3316FD6A740061A830 /* DraftQuest.m */; };
-		03221D3716FD6A740061A830 /* DraftSite.m in Sources */ = {isa = PBXBuildFile; fileRef = 03221D3616FD6A740061A830 /* DraftSite.m */; };
 		03221D3A16FD6A750061A830 /* Visit.m in Sources */ = {isa = PBXBuildFile; fileRef = 03221D3916FD6A750061A830 /* Visit.m */; };
 		03221D3F16FD6AAB0061A830 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03221D3E16FD6AAB0061A830 /* CoreData.framework */; };
 		03221D7716FD6C030061A830 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03221D7616FD6C030061A830 /* Security.framework */; };
@@ -31,12 +29,12 @@
 		033504031703134A00D98566 /* map_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 033504021703134A00D98566 /* map_icon.png */; };
 		03350408170316C100D98566 /* settings_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03350406170316C100D98566 /* settings_icon.png */; };
 		03350409170316C100D98566 /* settings_icon_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 03350407170316C100D98566 /* settings_icon_white.png */; };
-		0352ECF616FCF65D00874FD2 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0352ECF416FCF65D00874FD2 /* DataModel.xcdatamodeld */; };
 		035EDC1116F3EF74000D54BF /* QuestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035EDC1016F3EF73000D54BF /* QuestViewController.m */; };
 		035EDC1416F3FA5C000D54BF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035EDC1316F3FA5C000D54BF /* RootViewController.m */; };
 		035EDC1B16F44D41000D54BF /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 035EDC1A16F44D41000D54BF /* Constants.m */; };
 		035EDC2616F50342000D54BF /* wow_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 035EDC2416F50342000D54BF /* wow_icon_large.png */; };
 		035EDC2716F50342000D54BF /* wow_icon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 035EDC2516F50342000D54BF /* wow_icon_small.png */; };
+		036FE4D1170FDC0B005E5CDE /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 036FE4CF170FDC0A005E5CDE /* DataModel.xcdatamodeld */; };
 		037875D916F1ADA100F6195F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037875D816F1ADA100F6195F /* SettingsViewController.m */; };
 		03836BF616FBDB12004EED6B /* QuestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03836BF516FBDB12004EED6B /* QuestManager.m */; };
 		03836BF816FBDCFB004EED6B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03836BF716FBDCFB004EED6B /* CoreLocation.framework */; };
@@ -91,10 +89,6 @@
 		030ACAA417022C20000F5C62 /* DependenciesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DependenciesViewController.m; sourceTree = "<group>"; };
 		03221D2916FD6A740061A830 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		03221D2A16FD6A740061A830 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
-		03221D3216FD6A740061A830 /* DraftQuest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftQuest.h; sourceTree = "<group>"; };
-		03221D3316FD6A740061A830 /* DraftQuest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftQuest.m; sourceTree = "<group>"; };
-		03221D3516FD6A740061A830 /* DraftSite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftSite.h; sourceTree = "<group>"; };
-		03221D3616FD6A740061A830 /* DraftSite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftSite.m; sourceTree = "<group>"; };
 		03221D3816FD6A750061A830 /* Visit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Visit.h; sourceTree = "<group>"; };
 		03221D3916FD6A750061A830 /* Visit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Visit.m; sourceTree = "<group>"; };
 		03221D3E16FD6AAB0061A830 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -122,7 +116,6 @@
 		033504021703134A00D98566 /* map_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_icon.png; sourceTree = "<group>"; };
 		03350406170316C100D98566 /* settings_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_icon.png; sourceTree = "<group>"; };
 		03350407170316C100D98566 /* settings_icon_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_icon_white.png; sourceTree = "<group>"; };
-		0352ECF516FCF65D00874FD2 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		035EDC0F16F3EF73000D54BF /* QuestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestViewController.h; sourceTree = "<group>"; };
 		035EDC1016F3EF73000D54BF /* QuestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestViewController.m; sourceTree = "<group>"; };
 		035EDC1216F3FA5B000D54BF /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -131,6 +124,7 @@
 		035EDC1A16F44D41000D54BF /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Constants.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		035EDC2416F50342000D54BF /* wow_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wow_icon_large.png; sourceTree = "<group>"; };
 		035EDC2516F50342000D54BF /* wow_icon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wow_icon_small.png; sourceTree = "<group>"; };
+		036FE4D0170FDC0B005E5CDE /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		037875D716F1ADA000F6195F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		037875D816F1ADA100F6195F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		03836BF416FBDB12004EED6B /* QuestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestManager.h; sourceTree = "<group>"; };
@@ -226,10 +220,6 @@
 				030ACA9E17021688000F5C62 /* Site.m */,
 				03221D3816FD6A750061A830 /* Visit.h */,
 				03221D3916FD6A750061A830 /* Visit.m */,
-				03221D3216FD6A740061A830 /* DraftQuest.h */,
-				03221D3316FD6A740061A830 /* DraftQuest.m */,
-				03221D3516FD6A740061A830 /* DraftSite.h */,
-				03221D3616FD6A740061A830 /* DraftSite.m */,
 				03221D2916FD6A740061A830 /* Game.h */,
 				03221D2A16FD6A740061A830 /* Game.m */,
 			);
@@ -305,7 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				03BCE64B16F11BBC00FCA1BF /* MainStoryboard.storyboard */,
-				0352ECF416FCF65D00874FD2 /* DataModel.xcdatamodeld */,
+				036FE4CF170FDC0A005E5CDE /* DataModel.xcdatamodeld */,
 				03BCE64216F11BBC00FCA1BF /* AppDelegate.h */,
 				03BCE64316F11BBC00FCA1BF /* AppDelegate.m */,
 				0332100417027F9D00E8DB95 /* SidePanelViewController.h */,
@@ -554,10 +544,7 @@
 				035EDC1B16F44D41000D54BF /* Constants.m in Sources */,
 				03836BF616FBDB12004EED6B /* QuestManager.m in Sources */,
 				03836BFD16FBE57F004EED6B /* MapViewController.m in Sources */,
-				0352ECF616FCF65D00874FD2 /* DataModel.xcdatamodeld in Sources */,
 				03221D2B16FD6A740061A830 /* Game.m in Sources */,
-				03221D3416FD6A740061A830 /* DraftQuest.m in Sources */,
-				03221D3716FD6A740061A830 /* DraftSite.m in Sources */,
 				03221D3A16FD6A750061A830 /* Visit.m in Sources */,
 				03221D8116FD78CD0061A830 /* CoreDataManager.m in Sources */,
 				03221D8416FD814B0061A830 /* User.m in Sources */,
@@ -575,6 +562,7 @@
 				033210101702FC7900E8DB95 /* QuestCell.m in Sources */,
 				033503F717030BAC00D98566 /* HighlightingTextView.m in Sources */,
 				033503FC17030D2800D98566 /* MenuCell.m in Sources */,
+				036FE4D1170FDC0B005E5CDE /* DataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,12 +763,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		0352ECF416FCF65D00874FD2 /* DataModel.xcdatamodeld */ = {
+		036FE4CF170FDC0A005E5CDE /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				0352ECF516FCF65D00874FD2 /* DataModel.xcdatamodel */,
+				036FE4D0170FDC0B005E5CDE /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 0352ECF516FCF65D00874FD2 /* DataModel.xcdatamodel */;
+			currentVersion = 036FE4D0170FDC0B005E5CDE /* DataModel.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

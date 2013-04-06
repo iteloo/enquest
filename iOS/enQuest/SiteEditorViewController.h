@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "TextFieldInputViewController.h"
 
-@class DraftSite;
+@class Site;
 
 @interface SiteEditorViewController : UITableViewController <MKMapViewDelegate, TextFieldInputViewControllerDelegate>
 
-@property (strong, nonatomic) DraftSite *site;
+@property (strong, nonatomic) Site *site;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *siteNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dialogueLabel;

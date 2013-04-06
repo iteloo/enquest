@@ -7,18 +7,16 @@
 //
 
 #import "User.h"
-#import "DraftQuest.h"
 #import "Game.h"
 #import "Quest.h"
 
 
 @implementation User
 
-@dynamic email;
 @dynamic username;
+@dynamic email;
 @dynamic games;
-@dynamic drafts;
-@dynamic publishedQuests;
+@dynamic quests;
 
 - (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];

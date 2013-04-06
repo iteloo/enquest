@@ -8,7 +8,7 @@
 
 #import "DependenciesViewController.h"
 #import "CoreDataManager.h"
-#import "DraftSite.h"
+#import "Site.h"
 #import "StackMob.h"
 
 @interface DependenciesViewController ()
@@ -52,11 +52,11 @@
     
     if (!_fetchedResultsController) {
         CoreDataManager *dataManager = [CoreDataManager sharedManager];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"DraftSite" inManagedObjectContext:dataManager.dump];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Site" inManagedObjectContext:dataManager.dump];
         /** change sort method **/
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
         /** fix predicate problem of not getting local updates **/
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"dependents contains %@", self.site.draftsiteId];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"dependents contains %@", self.site.siteId];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
         request.predicate = predicate;
@@ -135,7 +135,7 @@
 
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    DraftSite *dep = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Site *dep = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	cell.textLabel.text = dep.name;
 }
 
@@ -170,7 +170,7 @@
 
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-		DraftSite *depToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
+		Site *depToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
 		NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
         [self.site removeDependenciesObject:depToDelete];
 		[context saveOnSuccess:^{

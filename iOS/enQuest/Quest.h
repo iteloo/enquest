@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Game, Site, User, DraftQuest;
+@class Game, Site, User;
 
 @interface Quest : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSDate * createddate;
 @property (nonatomic, retain) NSDate * lastmoddate;
+@property (nonatomic, retain) NSNumber *published;
 @property (nonatomic, retain) NSString * questId;
 @property (nonatomic, retain) NSString * initialNote;
 @property (nonatomic, retain) NSString * questDescription;
@@ -24,7 +25,7 @@
 @property (nonatomic, retain) Site *destination;
 @property (nonatomic, retain) NSSet *sites;
 
-- (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context withDraft:(DraftQuest*)draft;
+- (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end
 

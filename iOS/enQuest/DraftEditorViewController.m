@@ -7,7 +7,7 @@
 //
 
 #import "DraftEditorViewController.h"
-#import "DraftQuest.h"
+#import "Quest.h"
 #import "CoreDataManager.h"
 #import "StackMob.h"
 #import "DraftSitesViewController.h"
@@ -115,55 +115,35 @@
     self.publishButton.enabled = NO;
     self.publishButton.alpha = DisabledButtonAlpha;
     
-    // create new quest using draft
+    // mark published
     NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
-    Quest *newQuest = [[Quest alloc] initIntoManagedObjectContext:context withDraft:self.draft];
+    self.draft.published = [NSNumber numberWithBool:YES];
     
     // save context
     [context saveOnSuccess:^{
         NSLog(@"Your draft is published!");
         
-        /* present alert */
+        // exit editor view
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+        // present alert
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Congratulations, your draft is published!" message:@"Go tell everyone about it!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
         
-        // delete draft
-        [context deleteObject:self.draft];
-        [context saveOnSuccess:^{
-            NSLog(@"draft deleted");
-            
-            // exit edit screen
-            [self.navigationController popViewControllerAnimated:YES];
-            
-        } onFailure:^(NSError *error) {
-            /* present alert */
-            NSLog(@"cannot delete draft: %@", error);
-            
-            // display alert
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-            
-            // re-enable button
-            self.discardButton.enabled = YES;
-            self.discardButton.alpha = 1.0;
-        }];
-                
     } onFailure:^(NSError *error) {
-        NSLog(@"Error creating new quest object from draft: %@", error);
+        NSLog(@"Error publishing draft: %@", error);
         
-        [context deleteObject:newQuest];
+        // reset published flag
+        self.draft.published = [NSNumber numberWithBool:NO];
         
         // re-enable button
         self.publishButton.enabled = YES;
         self.publishButton.alpha = 1.0;
         
-        /* present alert */
+        // present alert
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     }];
-
-    
-    
 }
 
 - (IBAction)discard:(id)sender {

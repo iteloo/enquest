@@ -443,7 +443,7 @@
                     <navigationItem key="navigationItem" title="Sites" id="8sR-VX-eGq">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="6Ff-W3-yYm">
                             <connections>
-                                <action selector="addNewDraftSite:" destination="hLT-ya-igv" id="6Gf-9p-aqc"/>
+                                <action selector="addNewSite:" destination="hLT-ya-igv" id="7XE-Be-FuY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -631,7 +631,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dsX-hW-6f9">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SiteCell" id="dsX-hW-6f9">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1156,6 +1156,127 @@
         <image name="quests_icon.png" width="30" height="30"/>
         <image name="settings_icon.png" width="64" height="64"/>
     </resources>
+    <classes>
+        <class className="DependenciesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DependenciesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addNewDependency:"/>
+            </relationships>
+        </class>
+        <class className="DraftEditorViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DraftEditorViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="discard:"/>
+                <relationship kind="action" name="publish:"/>
+                <relationship kind="outlet" name="discardButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="publishButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="questDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="questNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="questNoteLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sitesLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DraftSitesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DraftSitesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addNewSite:"/>
+            </relationships>
+        </class>
+        <class className="DraftViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DraftViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addNewDraft:"/>
+            </relationships>
+        </class>
+        <class className="HighlightingTextView" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HighlightingTextView.h"/>
+        </class>
+        <class className="JASidePanelController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JASidePanelController.h"/>
+        </class>
+        <class className="LeftViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeftViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="action" name="registerNewUser:"/>
+                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="password_field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="reg_confirm_password_field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="reg_email_field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="reg_password_field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="reg_username_field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="registerButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="username_field" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createSite:"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="MenuCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuCell.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="QuestCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="authorLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="metaDataLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="questDescriptionLabel" candidateClass="HighlightingTextView"/>
+                <relationship kind="outlet" name="questNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="QuestViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestViewController.h"/>
+        </class>
+        <class className="RootViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
+        </class>
+        <class className="SettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logout:"/>
+                <relationship kind="outlet" name="loginStatus" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoutButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="SidePanelViewController" superclassName="JASidePanelController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SidePanelViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="centerPanel" candidateClass="UIViewController"/>
+                <relationship kind="outlet" name="leftPanel" candidateClass="UIViewController"/>
+                <relationship kind="outlet" name="rightPanel" candidateClass="UIViewController"/>
+            </relationships>
+        </class>
+        <class className="SiteEditorViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SiteEditorViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="coordinateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dialogueLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="radiusLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="siteNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TextFieldInputViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TextFieldInputViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

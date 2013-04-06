@@ -39,7 +39,7 @@
 }
 
 /** tmp: choose quest to add to **/
-- (IBAction)createDraftSite:(id)sender
+- (IBAction)createSite:(id)sender
 {
     QuestManager *qm = [QuestManager sharedManager];
     /** add in GUI support for selecting radius **/

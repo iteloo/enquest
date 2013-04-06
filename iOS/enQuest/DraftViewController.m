@@ -8,7 +8,7 @@
 
 #import "DraftViewController.h"
 #import "CoreDataManager.h"
-#import "DraftQuest.h"
+#import "Quest.h"
 #import "StackMob.h"
 #import "DraftEditorViewController.h"
 #import "UserManager.h"
@@ -75,13 +75,15 @@
     if (!_fetchedResultsController) {
         CoreDataManager *dataManager = [CoreDataManager sharedManager];
         NSString *username = [UserManager sharedManager].currentUsername;
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"DraftQuest" inManagedObjectContext:dataManager.dump];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Quest" inManagedObjectContext:dataManager.dump];
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"lastmoddate" ascending:NO];
         /** fix problem of deletion when changing sites **/
-        NSPredicate *predicate = nil;//[NSPredicate predicateWithFormat:@"author == %@", username];
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"author == %@", username];
+        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"published == %@", @"false"];
+        NSPredicate *andPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate1, predicate2, nil]];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
-        request.predicate = predicate;
+        request.predicate = andPredicate;
         request.sortDescriptors = [NSArray arrayWithObjects:sort, nil];
         
         NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:dataManager.dump sectionNameKeyPath:nil cacheName:nil];
@@ -102,9 +104,10 @@
     
     //make new draft
     NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
-    DraftQuest *newDraft = [[DraftQuest alloc] initIntoManagedObjectContext:context];
+    Quest *newDraft = [[Quest alloc] initIntoManagedObjectContext:context];
     newDraft.author = [UserManager sharedManager].currentUser;
     newDraft.name = @"Untitled Draft";
+    newDraft.published = [NSNumber numberWithBool:NO];
     
     //save (change will be picked up by fetchedResultsController?)
     [context saveOnSuccess:^{
@@ -180,7 +183,7 @@
 
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    DraftQuest *draft = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Quest *draft = [self.fetchedResultsController objectAtIndexPath:indexPath];
     QuestCell *questCell = (QuestCell*)cell;
     questCell.questNameLabel.text = draft.name;
     questCell.authorLabel.text = draft.author.username;

@@ -10,15 +10,14 @@
 #import <CoreData/CoreData.h>
 #import "StackMob.h"
 
-@class DraftQuest, Game, Quest;
+@class Game, Quest;
 
 @interface User : SMUserManagedObject
 
-@property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSString * username;
+@property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSSet *games;
-@property (nonatomic, retain) NSSet *drafts;
-@property (nonatomic, retain) NSSet *publishedQuests;
+@property (nonatomic, retain) NSSet *quests;
 
 - (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context;
 
@@ -31,14 +30,9 @@
 - (void)addGames:(NSSet *)values;
 - (void)removeGames:(NSSet *)values;
 
-- (void)addDraftsObject:(DraftQuest *)value;
-- (void)removeDraftsObject:(DraftQuest *)value;
-- (void)addDrafts:(NSSet *)values;
-- (void)removeDrafts:(NSSet *)values;
-
-- (void)addPublishedQuestsObject:(Quest *)value;
-- (void)removePublishedQuestsObject:(Quest *)value;
-- (void)addPublishedQuests:(NSSet *)values;
-- (void)removePublishedQuests:(NSSet *)values;
+- (void)addQuestsObject:(Quest *)value;
+- (void)removeQuestsObject:(Quest *)value;
+- (void)addQuests:(NSSet *)values;
+- (void)removeQuests:(NSSet *)values;
 
 @end
