@@ -12,6 +12,7 @@
 @interface QuestCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *questNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *authorLabel;
 @property (nonatomic, weak) IBOutlet HighlightingTextView *questDescriptionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *metaDataLabel;
 

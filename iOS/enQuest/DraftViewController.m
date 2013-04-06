@@ -13,6 +13,7 @@
 #import "DraftEditorViewController.h"
 #import "UserManager.h"
 #import "QuestCell.h"
+#import "User.h"
 
 @interface DraftViewController ()
 
@@ -182,6 +183,7 @@
     DraftQuest *draft = [self.fetchedResultsController objectAtIndexPath:indexPath];
     QuestCell *questCell = (QuestCell*)cell;
     questCell.questNameLabel.text = draft.name;
+    questCell.authorLabel.text = draft.author.username;
     questCell.questDescriptionLabel.text = draft.questDescription;
     NSUInteger numberOfSites = [draft.sites count];
     questCell.metaDataLabel.text = [NSString stringWithFormat:(numberOfSites==1 ? @"%d site" : @"%d sites"), numberOfSites];

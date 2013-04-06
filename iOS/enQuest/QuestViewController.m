@@ -7,6 +7,12 @@
 //
 
 #import "QuestViewController.h"
+#import "Quest.h"
+#import "User.h"
+#import "UserManager.h"
+#import "CoreDataManager.h"
+#import "QuestCell.h"
+#import "User.h"
 
 @interface QuestViewController ()
 
@@ -14,11 +20,12 @@
 
 @implementation QuestViewController
 
+@synthesize fetchedResultsController = _fetchedResultsController;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -26,12 +33,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogin) name:LoginNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogout) name:LogoutNotification object:nil];
+    
+}
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // attach draft to DraftViewController
+    UITableViewCell *senderCell = sender;
+    NSIndexPath *path = [self.tableView indexPathForCell:senderCell];
+    //DraftEditorViewController *controller = segue.destinationViewController;
+    //controller.draft = [self.fetchedResultsController objectAtIndexPath:path];
+}
+
+- (void)handleLogin
+{
+    NSLog(@"...deleting fetchedResultsController");
+    
+    // change fetchedResultsController
+    [NSFetchedResultsController deleteCacheWithName:self.fetchedResultsController.cacheName];
+    /** need to make sure fetchcontroller is set up properly **/
+    [self.tableView reloadData];
+}
+
+- (void)handleLogout
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    self.fetchedResultsController = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,80 +69,124 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 0;
+- (NSFetchedResultsController *)fetchedResultsController {
+    
+    if (!_fetchedResultsController) {
+        CoreDataManager *dataManager = [CoreDataManager sharedManager];
+        NSString *username = [UserManager sharedManager].currentUsername;
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Quest" inManagedObjectContext:dataManager.dump];
+        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"lastmoddate" ascending:NO];
+        /** fix problem of deletion when changing sites **/
+        NSPredicate *predicate = nil;//[NSPredicate predicateWithFormat:@"author == %@", username];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        request.entity = entity;
+        request.predicate = predicate;
+        request.sortDescriptors = [NSArray arrayWithObjects:sort, nil];
+        
+        NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:dataManager.dump sectionNameKeyPath:nil cacheName:nil];
+        controller.delegate = self;
+        
+        NSError *error = nil;
+        if (![controller performFetch:&error]) {
+            NSLog(@"in draftView: fetchedResultsController");
+            NSLog(@"...initial fetch failed with error: %@",error);
+        }
+        
+        _fetchedResultsController = controller;
+    }
+	return _fetchedResultsController;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return 0;
+#pragma mark -
+#pragma mark NSFetchedResultsControllerDelegate methods
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+	
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+			
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+	NSLog(@"in drafts::controller:didChangeObject:...:");
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+			NSLog(@"...Insert");
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationTop];
+            break;
+			
+        case NSFetchedResultsChangeDelete:
+			NSLog(@"...Delete");
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+            break;
+			
+        case NSFetchedResultsChangeUpdate:
+			NSLog(@"...Update");
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+			
+        case NSFetchedResultsChangeMove:
+			NSLog(@"...Move");
+            [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource methods
+
+- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    Quest *quest = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    QuestCell *questCell = (QuestCell*)cell;
+    questCell.questNameLabel.text = quest.name;
+    questCell.authorLabel.text = quest.author.username;
+    questCell.questDescriptionLabel.text = quest.questDescription;
+    NSUInteger numberOfSites = [quest.sites count];
+    questCell.metaDataLabel.text = [NSString stringWithFormat:(numberOfSites==1 ? @"%d site" : @"%d sites"), numberOfSites];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [[self.fetchedResultsController sections] count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"%@",self.fetchedResultsController);
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    NSLog(@"%d",sectionInfo.numberOfObjects);
+	return sectionInfo.numberOfObjects;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    // Configure the cell...
-    
+    static NSString *CellIdentifier = @"QuestCell";
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    }
+    [self configureCell:cell atIndexPath:indexPath];
+	
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo name];
 }
 
 @end

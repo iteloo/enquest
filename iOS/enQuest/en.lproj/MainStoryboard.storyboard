@@ -112,36 +112,45 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DraftCell" rowHeight="100" id="ewm-ye-u4A" customClass="QuestCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DraftCell" rowHeight="100" id="0XG-ha-cLg" customClass="QuestCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eK-kA-Yae" customClass="HighlightingTextView">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpc-Yh-2Ca" customClass="HighlightingTextView">
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="66" id="6C3-0o-aFa"/>
-                                                <constraint firstAttribute="width" constant="260" id="Ibi-5P-UfP"/>
+                                                <constraint firstAttribute="width" constant="260" id="f7R-3K-eeo"/>
+                                                <constraint firstAttribute="height" constant="55" id="hms-NG-Awg"/>
                                             </constraints>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Quest Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QA9-yS-axs">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Quest Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hes-tg-0cv">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="232" id="MIV-Er-4Ck"/>
+                                                <constraint firstAttribute="width" constant="232" id="yJo-OT-gAs"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2c-3d-GnR">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBQ-ME-3Ky">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="63" id="Ccu-zV-5DI"/>
+                                                <constraint firstAttribute="width" constant="63" id="4Wq-iw-XA0"/>
+                                                <constraint firstAttribute="height" constant="21" id="u97-ag-r4D"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9j-4H-VMh">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="43" id="UTS-iT-2OE"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
@@ -149,19 +158,22 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="1eK-kA-Yae" firstAttribute="top" secondItem="ewm-ye-u4A" secondAttribute="top" constant="25" id="A11-uG-XEU"/>
-                                    <constraint firstItem="T2c-3d-GnR" firstAttribute="top" secondItem="QA9-yS-axs" secondAttribute="top" type="default" id="CSh-5I-IhN"/>
-                                    <constraint firstAttribute="trailing" secondItem="T2c-3d-GnR" secondAttribute="trailing" constant="20" type="default" id="Ioo-as-sck"/>
-                                    <constraint firstItem="1eK-kA-Yae" firstAttribute="leading" secondItem="ewm-ye-u4A" secondAttribute="leading" constant="20" type="default" id="OKK-i3-FzJ"/>
-                                    <constraint firstItem="QA9-yS-axs" firstAttribute="top" secondItem="ewm-ye-u4A" secondAttribute="top" constant="7" id="aFI-V0-tj4"/>
-                                    <constraint firstItem="T2c-3d-GnR" firstAttribute="bottom" secondItem="QA9-yS-axs" secondAttribute="bottom" type="default" id="hO8-48-qp7"/>
-                                    <constraint firstItem="QA9-yS-axs" firstAttribute="leading" secondItem="ewm-ye-u4A" secondAttribute="leading" constant="14" id="ibw-uF-kP8"/>
+                                    <constraint firstItem="rpc-Yh-2Ca" firstAttribute="leading" secondItem="0XG-ha-cLg" secondAttribute="leading" constant="20" type="default" id="3zc-y8-eKI"/>
+                                    <constraint firstItem="K9j-4H-VMh" firstAttribute="top" secondItem="hes-tg-0cv" secondAttribute="top" type="default" id="4Ms-Jo-7dJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="KBQ-ME-3Ky" secondAttribute="bottom" constant="2" id="9wC-vw-Dd6"/>
+                                    <constraint firstAttribute="trailing" secondItem="K9j-4H-VMh" secondAttribute="trailing" constant="9" id="ASY-k3-GPu"/>
+                                    <constraint firstItem="hes-tg-0cv" firstAttribute="leading" secondItem="0XG-ha-cLg" secondAttribute="leading" constant="14" id="Dek-Cm-gvv"/>
+                                    <constraint firstItem="K9j-4H-VMh" firstAttribute="bottom" secondItem="hes-tg-0cv" secondAttribute="bottom" type="default" id="QOt-pw-1fz"/>
+                                    <constraint firstAttribute="trailing" secondItem="KBQ-ME-3Ky" secondAttribute="trailing" constant="20" type="default" id="UBs-2z-k1C"/>
+                                    <constraint firstItem="rpc-Yh-2Ca" firstAttribute="top" secondItem="0XG-ha-cLg" secondAttribute="top" constant="22" id="jeC-0i-XfX"/>
+                                    <constraint firstItem="hes-tg-0cv" firstAttribute="top" secondItem="0XG-ha-cLg" secondAttribute="top" constant="7" id="kp7-x9-8qA"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="metaDataLabel" destination="T2c-3d-GnR" id="TWO-IG-hZB"/>
-                                    <outlet property="questDescriptionLabel" destination="1eK-kA-Yae" id="mDP-bE-aSf"/>
-                                    <outlet property="questNameLabel" destination="QA9-yS-axs" id="eSB-wV-sFh"/>
-                                    <segue destination="1iq-S8-xJs" kind="push" id="huB-sw-tF2"/>
+                                    <outlet property="authorLabel" destination="K9j-4H-VMh" id="mnW-rR-zXW"/>
+                                    <outlet property="metaDataLabel" destination="KBQ-ME-3Ky" id="HGy-Ld-6Xg"/>
+                                    <outlet property="questDescriptionLabel" destination="rpc-Yh-2Ca" id="RxP-lo-3iF"/>
+                                    <outlet property="questNameLabel" destination="hes-tg-0cv" id="0OV-3l-KJ9"/>
+                                    <segue destination="1iq-S8-xJs" kind="push" id="Xdo-j6-Jz7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1002,26 +1014,68 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestCell" textLabel="xJn-9u-b95" detailTextLabel="o2u-Nc-cO0" rowHeight="100" style="IBUITableViewCellStyleSubtitle" id="53U-kd-GLX">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestCell" rowHeight="100" id="Q2v-Ll-dms" customClass="QuestCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJn-9u-b95">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2u-Nc-cO0">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCk-Kl-fIA" customClass="HighlightingTextView">
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="55" id="2Gz-rf-GF7"/>
+                                                <constraint firstAttribute="width" constant="260" id="xhY-hW-SXZ"/>
+                                            </constraints>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Quest Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpf-c3-O1K">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="232" id="qbR-6f-7M0"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9x-pO-xFz">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="63" id="6S5-l4-fqd"/>
+                                                <constraint firstAttribute="height" constant="21" id="FXB-Lf-aah"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiN-ma-9sa">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="43" id="3Gp-qA-ENR"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="LCk-Kl-fIA" firstAttribute="top" secondItem="Q2v-Ll-dms" secondAttribute="top" constant="22" id="3NI-xc-WBi"/>
+                                    <constraint firstItem="cpf-c3-O1K" firstAttribute="top" secondItem="Q2v-Ll-dms" secondAttribute="top" constant="7" id="9il-1I-9Id"/>
+                                    <constraint firstAttribute="trailing" secondItem="KiN-ma-9sa" secondAttribute="trailing" constant="9" id="BTX-N1-Wed"/>
+                                    <constraint firstItem="KiN-ma-9sa" firstAttribute="top" secondItem="cpf-c3-O1K" secondAttribute="top" type="default" id="Ii9-fu-oxc"/>
+                                    <constraint firstItem="LCk-Kl-fIA" firstAttribute="leading" secondItem="Q2v-Ll-dms" secondAttribute="leading" constant="20" type="default" id="LaP-g1-Xo3"/>
+                                    <constraint firstAttribute="bottom" secondItem="I9x-pO-xFz" secondAttribute="bottom" constant="2" id="M0j-ux-K5d"/>
+                                    <constraint firstItem="cpf-c3-O1K" firstAttribute="leading" secondItem="Q2v-Ll-dms" secondAttribute="leading" constant="14" id="kff-vs-EI9"/>
+                                    <constraint firstAttribute="trailing" secondItem="I9x-pO-xFz" secondAttribute="trailing" constant="20" type="default" id="o9h-bQ-Hms"/>
+                                    <constraint firstItem="KiN-ma-9sa" firstAttribute="bottom" secondItem="cpf-c3-O1K" secondAttribute="bottom" type="default" id="qGQ-W9-kjr"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="authorLabel" destination="KiN-ma-9sa" id="CqN-Y2-rOh"/>
+                                    <outlet property="metaDataLabel" destination="I9x-pO-xFz" id="SQC-ZW-4j4"/>
+                                    <outlet property="questDescriptionLabel" destination="LCk-Kl-fIA" id="KKF-6H-efK"/>
+                                    <outlet property="questNameLabel" destination="cpf-c3-O1K" id="lFq-tz-xcH"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1102,123 +1156,6 @@
         <image name="quests_icon.png" width="30" height="30"/>
         <image name="settings_icon.png" width="64" height="64"/>
     </resources>
-    <classes>
-        <class className="DependenciesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DependenciesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewDependency:"/>
-            </relationships>
-        </class>
-        <class className="DraftEditorViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DraftEditorViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="discard:"/>
-                <relationship kind="action" name="publish:"/>
-                <relationship kind="outlet" name="discardButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="publishButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="questDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questNoteLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sitesLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DraftSitesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DraftSitesViewController.h"/>
-        </class>
-        <class className="DraftViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DraftViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewDraft:"/>
-            </relationships>
-        </class>
-        <class className="HighlightingTextView" superclassName="UITextView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HighlightingTextView.h"/>
-        </class>
-        <class className="JASidePanelController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JASidePanelController.h"/>
-        </class>
-        <class className="LeftViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeftViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="login:"/>
-                <relationship kind="action" name="registerNewUser:"/>
-                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="password_field" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="reg_confirm_password_field" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="reg_email_field" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="reg_password_field" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="reg_username_field" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="registerButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="username_field" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createDraftSite:"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="MenuCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuCell.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="QuestCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="metaDataLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questDescriptionLabel" candidateClass="HighlightingTextView"/>
-                <relationship kind="outlet" name="questNameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="QuestViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestViewController.h"/>
-        </class>
-        <class className="RootViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="logout:"/>
-                <relationship kind="outlet" name="loginStatus" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoutButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="SidePanelViewController" superclassName="JASidePanelController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SidePanelViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="centerPanel" candidateClass="UIViewController"/>
-                <relationship kind="outlet" name="leftPanel" candidateClass="UIViewController"/>
-                <relationship kind="outlet" name="rightPanel" candidateClass="UIViewController"/>
-            </relationships>
-        </class>
-        <class className="SiteEditorViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SiteEditorViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="coordinateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dialogueLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="radiusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="siteNameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TextFieldInputViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TextFieldInputViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="delegate"/>
-                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

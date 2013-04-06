@@ -11,6 +11,7 @@
 @implementation QuestCell
 
 @synthesize questNameLabel;
+@synthesize authorLabel;
 @synthesize questDescriptionLabel;
 @synthesize metaDataLabel;
 

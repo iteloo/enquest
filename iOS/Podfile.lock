@@ -2,16 +2,16 @@
 COCOAPODS: 0.16.4
 
 SPEC CHECKSUMS: 
-  JASidePanels: 172b5130c7e3d9e3d2a0b3821d53f0764b4a2ff9
   StackMob: ef77137182d8471806a6a4ddd54ea87408bbef84
+  JASidePanels: 172b5130c7e3d9e3d2a0b3821d53f0764b4a2ff9
   AFNetworking: 204f4b3d3a3ea7b38737c3fbf2646ba8c9719eea
-
-DEPENDENCIES: 
-- JASidePanels (~> 1.3.0)
-- StackMob (= 1.3.0)
 
 PODS: 
 - AFNetworking (1.0)
 - JASidePanels (1.3.0)
 - StackMob (1.3.0): 
   - AFNetworking (= 1.0)
+
+DEPENDENCIES: 
+- JASidePanels (~> 1.3.0)
+- StackMob (= 1.3.0)

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QuestViewController : UITableViewController
+@interface QuestViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
