@@ -1,22 +1,25 @@
 //
-//  DependenciesViewController.m
+//  GamesViewController.m
 //  enQuest
 //
-//  Created by Leo on 03/26/13.
+//  Created by Leo on 04/10/13.
 //  Copyright (c) 2013 iteloolab. All rights reserved.
 //
 
-#import "DependenciesViewController.h"
+#import "GamesViewController.h"
 #import "CoreDataManager.h"
-#import "Site.h"
+#import "UserManager.h"
+#import "Game.h"
+#import "User.h"
+#import "Quest.h"
+#import "QuestCell.h"
 
-@interface DependenciesViewController ()
+@interface GamesViewController ()
 
 @end
 
-@implementation DependenciesViewController
+@implementation GamesViewController
 
-@synthesize site;
 @synthesize fetchedResultsController = _fetchedResultsController;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -30,15 +33,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogin) name:LoginNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogout) name:LogoutNotification object:nil];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // attach site to SiteEditorViewController
+    // attach quest to detail view controller
     //UITableViewCell *senderCell = sender;
     //NSIndexPath *path = [self.tableView indexPathForCell:senderCell];
-    //SiteEditorViewController *controller = segue.destinationViewController;
-    //controller.site = [self.fetchedResultsController objectAtIndexPath:path];
+    //QuestDetailViewController *controller = segue.destinationViewController;
+    //controller.quest = [self.fetchedResultsController objectAtIndexPath:path];
+}
+
+- (void)handleLogin
+{
+    NSLog(@"...deleting fetchedResultsController");
+    
+    // change fetchedResultsController
+    [NSFetchedResultsController deleteCacheWithName:self.fetchedResultsController.cacheName];
+    /** need to make sure fetchcontroller is set up properly **/
+    [self.tableView reloadData];
+}
+
+- (void)handleLogout
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    self.fetchedResultsController = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,14 +73,14 @@
     
     if (!_fetchedResultsController) {
         CoreDataManager *dataManager = [CoreDataManager sharedManager];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Site" inManagedObjectContext:dataManager.dump];
-        /** change sort method **/
-        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
-        /** fix predicate problem of not getting local updates **/
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"dependents contains %@", self.site.siteId];
+        NSString *username = [UserManager sharedManager].currentUsername;
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Game" inManagedObjectContext:dataManager.dump];
+        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"lastmoddate" ascending:NO];
+        /** fix problem of deletion when changing sites **/
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"player == %@", username];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
-        request.predicate = predicate;
+        request.predicate = predicate1;
         request.sortDescriptors = [NSArray arrayWithObjects:sort, nil];
         
         NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:dataManager.dump sectionNameKeyPath:nil cacheName:nil];
@@ -66,7 +88,7 @@
         
         NSError *error = nil;
         if (![controller performFetch:&error]) {
-            NSLog(@"in dependencies: fetchedResultsController");
+            NSLog(@"in gamesView: fetchedResultsController");
             NSLog(@"...initial fetch failed with error: %@",error);
         }
         
@@ -74,11 +96,6 @@
     }
 	return _fetchedResultsController;
 }
-
-- (IBAction)addNewDependency:(id)sender {
-    
-}
-
 
 #pragma mark -
 #pragma mark NSFetchedResultsControllerDelegate methods
@@ -101,7 +118,7 @@
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-	NSLog(@"in dependencies::controller:didChangeObject:...:");
+	NSLog(@"in games::controller:didChangeObject:...:");
     switch(type) {
         case NSFetchedResultsChangeInsert:
 			NSLog(@"...Insert");
@@ -134,8 +151,15 @@
 
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    Site *dep = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	cell.textLabel.text = dep.name;
+    /** todo: specialized cell? **/
+    Game *game = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Quest *quest = game.quest;
+    QuestCell *questCell = (QuestCell*)cell;
+    questCell.questNameLabel.text = quest.name;
+    questCell.authorLabel.text = quest.author.username;
+    questCell.questDescriptionLabel.text = quest.questDescription;
+    NSUInteger numberOfSites = [quest.sites count];
+    questCell.metaDataLabel.text = [NSString stringWithFormat:(numberOfSites==1 ? @"%d / %d site visitied" : @"%d / %d sites visited"), [game.visits count], numberOfSites];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -151,7 +175,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"DraftSiteCell";
+    static NSString *CellIdentifier = @"GameCell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -165,22 +189,6 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo name];
-}
-
-- (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-		Site *depToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
-		NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
-        [self.site removeDependenciesObject:depToDelete];
-		[context saveOnSuccess:^{
-            NSLog(@"dependency deleted");
-        } onFailure:^(NSError *error) {
-            NSLog(@"failed to delete dependency: %@", error);
-            /* present alert */
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-        }];
-    }
 }
 
 @end

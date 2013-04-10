@@ -13,9 +13,19 @@
 
 @implementation Visit
 
-@dynamic date;
 @dynamic log;
 @dynamic game;
 @dynamic site;
+
+- (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
+    
+    if (self = [super initWithEntity:entity insertIntoManagedObjectContext:context]) {
+        [self setValue:[self assignObjectId] forKey:[self primaryKeyField]];
+    }
+    
+    return self;
+}
 
 @end

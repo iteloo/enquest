@@ -42,6 +42,7 @@
 		0384EEAD17123566009EEED6 /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0384EEAC17123566009EEED6 /* GameManager.m */; };
 		0384EEB01713C9B5009EEED6 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0384EEAF1713C9B5009EEED6 /* LocationManager.m */; };
 		0384EEB31713F4F4009EEED6 /* QuestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0384EEB21713F4F4009EEED6 /* QuestDetailViewController.m */; };
+		038EA73D1715F4F500C07874 /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 038EA73C1715F4F500C07874 /* GamesViewController.m */; };
 		03BCE63416F11BBC00FCA1BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCE63316F11BBC00FCA1BF /* UIKit.framework */; };
 		03BCE63616F11BBC00FCA1BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCE63516F11BBC00FCA1BF /* Foundation.framework */; };
 		03BCE63816F11BBC00FCA1BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCE63716F11BBC00FCA1BF /* CoreGraphics.framework */; };
@@ -139,6 +140,8 @@
 		0384EEAF1713C9B5009EEED6 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		0384EEB11713F4F4009EEED6 /* QuestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestDetailViewController.h; sourceTree = "<group>"; };
 		0384EEB21713F4F4009EEED6 /* QuestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestDetailViewController.m; sourceTree = "<group>"; };
+		038EA73B1715F4F500C07874 /* GamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamesViewController.h; sourceTree = "<group>"; };
+		038EA73C1715F4F500C07874 /* GamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamesViewController.m; sourceTree = "<group>"; };
 		03BCE63016F11BBC00FCA1BF /* enQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = enQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCE63316F11BBC00FCA1BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		03BCE63516F11BBC00FCA1BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -263,10 +266,8 @@
 				0384EEAC17123566009EEED6 /* GameManager.m */,
 				0384EEAE1713C9B5009EEED6 /* LocationManager.h */,
 				0384EEAF1713C9B5009EEED6 /* LocationManager.m */,
-				035EDC0F16F3EF73000D54BF /* QuestViewController.h */,
-				035EDC1016F3EF73000D54BF /* QuestViewController.m */,
-				0384EEB11713F4F4009EEED6 /* QuestDetailViewController.h */,
-				0384EEB21713F4F4009EEED6 /* QuestDetailViewController.m */,
+				038EA73B1715F4F500C07874 /* GamesViewController.h */,
+				038EA73C1715F4F500C07874 /* GamesViewController.m */,
 				03836BFB16FBE57F004EED6B /* MapViewController.h */,
 				03836BFC16FBE57F004EED6B /* MapViewController.m */,
 			);
@@ -297,6 +298,17 @@
 				035EDC1316F3FA5C000D54BF /* RootViewController.m */,
 			);
 			name = "Root Objects";
+			sourceTree = "<group>";
+		};
+		038EA73E1715F51500C07874 /* Quest Browsing */ = {
+			isa = PBXGroup;
+			children = (
+				035EDC0F16F3EF73000D54BF /* QuestViewController.h */,
+				035EDC1016F3EF73000D54BF /* QuestViewController.m */,
+				0384EEB11713F4F4009EEED6 /* QuestDetailViewController.h */,
+				0384EEB21713F4F4009EEED6 /* QuestDetailViewController.m */,
+			);
+			name = "Quest Browsing";
 			sourceTree = "<group>";
 		};
 		03BCE62716F11BBC00FCA1BF = {
@@ -344,6 +356,7 @@
 				03BCE64B16F11BBC00FCA1BF /* MainStoryboard.storyboard */,
 				036FE4CF170FDC0A005E5CDE /* DataModel.xcdatamodeld */,
 				0384EEAA1712352A009EEED6 /* Root Objects */,
+				038EA73E1715F51500C07874 /* Quest Browsing */,
 				0384EEA8171234F3009EEED6 /* Gameplay */,
 				03FBB04917015BB2001E2414 /* Draft Editing */,
 				0384EEA91712350F009EEED6 /* Accounts */,
@@ -599,6 +612,7 @@
 				0384EEAD17123566009EEED6 /* GameManager.m in Sources */,
 				0384EEB01713C9B5009EEED6 /* LocationManager.m in Sources */,
 				0384EEB31713F4F4009EEED6 /* QuestDetailViewController.m in Sources */,
+				038EA73D1715F4F500C07874 /* GamesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

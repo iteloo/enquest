@@ -13,9 +13,10 @@
 
 @interface Visit : NSManagedObject
 
-@property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * log;
 @property (nonatomic, retain) Game *game;
 @property (nonatomic, retain) Site *site;
+
+- (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

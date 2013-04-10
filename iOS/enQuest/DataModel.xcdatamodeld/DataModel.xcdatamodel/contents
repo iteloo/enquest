@@ -42,7 +42,6 @@
         </fetchedProperty>
     </entity>
     <entity name="Visit" representedClassName="Visit" syncable="YES">
-        <attribute name="date" attributeType="Date" syncable="YES"/>
         <attribute name="log" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="visitId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="game" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="visits" inverseEntity="Game" syncable="YES"/>
@@ -53,6 +52,6 @@
         <element name="Quest" positionX="549" positionY="360" width="128" height="210"/>
         <element name="Site" positionX="513" positionY="81" width="128" height="195"/>
         <element name="User" positionX="54" positionY="310" width="128" height="134"/>
-        <element name="Visit" positionX="315" positionY="158" width="128" height="118"/>
+        <element name="Visit" positionX="315" positionY="158" width="128" height="105"/>
     </elements>
 </model>

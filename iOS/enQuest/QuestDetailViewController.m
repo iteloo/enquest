@@ -11,6 +11,7 @@
 #import "Game.h"
 #import "CoreDataManager.h"
 #import "UserManager.h"
+#import "User.h"
 
 @interface QuestDetailViewController ()
 
@@ -28,6 +29,23 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.playButton setTitle:@"Already playing" forState:UIControlStateDisabled];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // disable button if already playing (label will be set)
+    if ([[UserManager sharedManager].currentUser.games intersectsSet:self.quest.games]) {
+        self.playButton.enabled = NO;
+        self.playButton.alpha = DisabledButtonAlpha;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,6 +68,10 @@
     //save
     [context saveOnSuccess:^{
         NSLog(@"New game created");
+        
+        // re-enable button
+        self.playButton.enabled = YES;
+        self.playButton.alpha = 1.0;
         
         // exit detail view
         [self.navigationController popToRootViewControllerAnimated:YES];
