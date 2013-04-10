@@ -7,7 +7,6 @@
 //
 
 #import "MapViewController.h"
-#import "QuestManager.h"
 
 @interface MapViewController ()
 
@@ -41,11 +40,7 @@
 /** tmp: choose quest to add to **/
 - (IBAction)createSite:(id)sender
 {
-    QuestManager *qm = [QuestManager sharedManager];
-    /** add in GUI support for selecting radius **/
-    MKCircle *overlay = [MKCircle circleWithCenterCoordinate:mapView.userLocation.coordinate radius:100.0];
-    /** add in identifier **/
-    [qm registerRegionWithCircularOverlay:overlay andIdentifier:@"garbage"];
+    
 }
 
 - (void)didReceiveMemoryWarning

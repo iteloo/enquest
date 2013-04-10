@@ -8,7 +8,6 @@
 
 #import "SiteEditorViewController.h"
 #import "Site.h"
-#import "StackMob.h"
 #import "CoreDataManager.h"
 #import "TextFieldInputViewController.h"
 #import <QuartzCore/QuartzCore.h>

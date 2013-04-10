@@ -9,7 +9,6 @@
 #import "DependenciesViewController.h"
 #import "CoreDataManager.h"
 #import "Site.h"
-#import "StackMob.h"
 
 @interface DependenciesViewController ()
 

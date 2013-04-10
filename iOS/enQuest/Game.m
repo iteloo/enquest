@@ -17,4 +17,16 @@
 @dynamic quest;
 @dynamic visits;
 
+- (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
+    
+    if (self = [super initWithEntity:entity insertIntoManagedObjectContext:context]) {
+        [self setValue:[self assignObjectId] forKey:[self primaryKeyField]];
+        self.status = [NSNumber numberWithInt:GameStatusActive];
+    }
+    
+    return self;
+}
+
 @end

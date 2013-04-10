@@ -13,6 +13,7 @@
 #import "CoreDataManager.h"
 #import "QuestCell.h"
 #import "User.h"
+#import "QuestDetailViewController.h"
 
 @interface QuestViewController ()
 
@@ -40,11 +41,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // attach draft to DraftViewController
-    //UITableViewCell *senderCell = sender;
-    //NSIndexPath *path = [self.tableView indexPathForCell:senderCell];
-    //DraftEditorViewController *controller = segue.destinationViewController;
-    //controller.draft = [self.fetchedResultsController objectAtIndexPath:path];
+    // attach quest to detail view controller
+    UITableViewCell *senderCell = sender;
+    NSIndexPath *path = [self.tableView indexPathForCell:senderCell];
+    QuestDetailViewController *controller = segue.destinationViewController;
+    controller.quest = [self.fetchedResultsController objectAtIndexPath:path];
 }
 
 - (void)handleLogin

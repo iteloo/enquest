@@ -10,7 +10,6 @@
 #import "CoreDataManager.h"
 #import "Quest.h"
 #import "Site.h"
-#import "StackMob.h"
 #import "SiteEditorViewController.h"
 
 @interface DraftSitesViewController ()

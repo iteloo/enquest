@@ -9,7 +9,6 @@
 #import "DraftEditorViewController.h"
 #import "Quest.h"
 #import "CoreDataManager.h"
-#import "StackMob.h"
 #import "DraftSitesViewController.h"
 #import "Quest.h"
 

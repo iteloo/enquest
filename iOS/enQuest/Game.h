@@ -9,14 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class User;
+typedef enum {
+    GameStatusActive = 0
+} GameStatus;
+
+@class User, Quest;
 
 @interface Game : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * status;
 @property (nonatomic, retain) User *player;
-@property (nonatomic, retain) NSManagedObject *quest;
+@property (nonatomic, retain) Quest *quest;
 @property (nonatomic, retain) NSSet *visits;
+
+- (id)initIntoManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end
 
 @interface Game (CoreDataGeneratedAccessors)

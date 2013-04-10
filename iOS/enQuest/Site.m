@@ -9,7 +9,6 @@
 #import "Quest.h"
 #import "Site.h"
 #import "Visit.h"
-#import "StackMob.h"
 
 
 @implementation Site

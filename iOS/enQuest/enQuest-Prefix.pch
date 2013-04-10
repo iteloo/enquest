@@ -18,4 +18,5 @@
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
     #import "CoreDataMacros.h"
+    #import "StackMob.h"
 #endif

@@ -7,7 +7,6 @@
 //
 
 #import "SettingsViewController.h"
-#import "StackMob.h"
 #import "UserManager.h"
 #import "RootViewController.h"
 

@@ -8,7 +8,6 @@
 
 #import "LoginViewController.h"
 #import "CoreDataManager.h"
-#import "StackMob.h"
 #import "User.h"
 #import "UserManager.h"
 

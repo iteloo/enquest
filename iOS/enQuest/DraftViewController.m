@@ -9,7 +9,6 @@
 #import "DraftViewController.h"
 #import "CoreDataManager.h"
 #import "Quest.h"
-#import "StackMob.h"
 #import "DraftEditorViewController.h"
 #import "UserManager.h"
 #import "QuestCell.h"

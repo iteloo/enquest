@@ -35,7 +35,7 @@
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="email" attributeType="String" syncable="YES"/>
         <attribute name="username" attributeType="String" indexed="YES" syncable="YES"/>
-        <relationship name="games" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Game" inverseName="player" inverseEntity="Game" syncable="YES"/>
+        <relationship name="games" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Game" inverseName="player" inverseEntity="Game" syncable="YES"/>
         <relationship name="quests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Quest" inverseName="author" inverseEntity="Quest" syncable="YES"/>
         <fetchedProperty name="activeGames" optional="YES" syncable="YES">
             <fetchRequest name="fetchedPropertyFetchRequest" entity="User"/>

@@ -8,7 +8,6 @@
 
 #import "SYNTHESIZE_GOD.h"
 #import "CoreDataManager.h"
-#import "StackMob.h"
 
 @implementation CoreDataManager
 

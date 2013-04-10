@@ -8,7 +8,6 @@
 
 #import "RootViewController.h"
 #import "LoginViewController.h"
-#import "StackMob.h"
 #import "CoreDataManager.h"
 #import "UserManager.h"
 #import "User.h"
@@ -64,6 +63,8 @@
                     
                     // dismiss wait screen
                     [self.waitScreen dismissViewControllerAnimated:YES completion:nil];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotification object:nil];
                     
                 } onFailure:^(NSError *error) {
                     /** handle this **/
