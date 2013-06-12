@@ -20,6 +20,8 @@ SYNTHESIZE_GOD(CoreDataManager, sharedManager);
 {
     SMClient *client = [SMClient defaultClient];
     SMCoreDataStore *coreDataStore = [client coreDataStoreWithManagedObjectModel:self.managedObjectModel];
+    coreDataStore.cachePolicy = SMCachePolicyTryNetworkElseCache;
+    
     __block SMCoreDataStore *blockCoreDataStore = coreDataStore;
     [client.session.networkMonitor setNetworkStatusChangeBlockWithCachePolicyReturn:^SMCachePolicy(SMNetworkStatus status) {
         

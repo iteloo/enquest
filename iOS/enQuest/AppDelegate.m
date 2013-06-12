@@ -19,9 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //SM_CORE_DATA_DEBUG = YES;
+    SM_CORE_DATA_DEBUG = YES;
     SM_CACHE_ENABLED = YES;
-    SM_ALLOW_CACHE_RESET = YES;
+    //SM_ALLOW_CACHE_RESET = YES;
     
     self.client = [[SMClient alloc] initWithAPIVersion:@"0" publicKey:@"8bbc858b-eb60-4e6b-a620-f74c7add5413"];
     
@@ -30,9 +30,8 @@
     // init location manager
     [LocationManager sharedManager];
     
-    // retrieve current user
-    UserManager *userManager = [UserManager sharedManager];
-    [userManager retrieveSavedUser];
+    // init usermanager and refresh status
+    [[UserManager sharedManager] refreshLoginStatus];
     
     
     return YES;

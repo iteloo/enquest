@@ -39,60 +39,11 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    UserManager *userManager = [UserManager sharedManager];
-    if (!userManager.currentUser) {
-        if (userManager.currentUsername) {
-            // present wait screen
-            [self performSegueWithIdentifier:@"WaitScreen" sender:self];
-            
-            // login
-            NSString *username = userManager.currentUsername;
-            NSString *password = userManager.currentPassword;
-            
-            SMClient *client = [SMClient defaultClient];
-            [client loginWithUsername:username password:password onSuccess:^(NSDictionary *results) {
-                
-                NSLog(@"Login Success %@ with results:", results);
-                
-                NSFetchRequest *userFetch = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-                [userFetch setPredicate:[NSPredicate predicateWithFormat:@"username == %@", [results objectForKey:@"username"]]];
-                NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
-                [context executeFetchRequest:userFetch onSuccess:^(NSArray *results) {
-                    User *user = [results lastObject];
-                    [[UserManager sharedManager] setCurrentUser:user password:password];
-                    
-                    // dismiss wait screen
-                    [self.waitScreen dismissViewControllerAnimated:YES completion:nil];
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotification object:nil];
-                    
-                } onFailure:^(NSError *error) {
-                    /** handle this **/
-                    NSLog(@"Error fetching user object: %@", error);
-                }];
-                
-            } onFailure:^(NSError *error) {
-                
-                NSLog(@"Login Failed: %@",error);
-                
-                // dismiss wait screen
-                [self.waitScreen dismissViewControllerAnimated:YES completion:nil];
-                
-                // display login screen
-                [self displayLoginScreen];
-                
-                // display alert
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login was unsuccessful." message:[error.userInfo objectForKey:@"error_description"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alertView show];
-            }];
-            
-        }
-        else
-        {
-            NSLog(@"...Cannot retrieve login info.");
-            [self displayLoginScreen];
-        }
-        
+    [super viewDidAppear:animated];
+    
+    LoginStatus loginStatus = [UserManager sharedManager].status;
+    if (loginStatus == LoggedOut) {
+        [self handleLogout];
     }
 }
 
@@ -101,15 +52,15 @@
     [self displayLoginScreen];
 }
 
-- (void)switchToViewControllerWithTag:(NSInteger)tag
-{
-    self.selectedIndex = tag;
-}
-
 - (void)displayLoginScreen
 {
     NSLog(@"...displayLoginScreen");
     [self performSegueWithIdentifier:@"LoginScreen" sender:self];
+}
+
+- (void)switchToViewControllerWithTag:(NSInteger)tag
+{
+    self.selectedIndex = tag;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

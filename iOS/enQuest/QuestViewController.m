@@ -79,15 +79,13 @@
     
     if (!_fetchedResultsController) {
         CoreDataManager *dataManager = [CoreDataManager sharedManager];
-        //NSString *username = [UserManager sharedManager].currentUsername;
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Quest" inManagedObjectContext:dataManager.dump];
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"lastmoddate" ascending:NO];
         /** fix problem of deletion when changing sites **/
-        //NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"author == %@", username];
-        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"published == YES"];
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"published == YES"];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
-        request.predicate = predicate2;
+        request.predicate = predicate1;
         request.sortDescriptors = [NSArray arrayWithObjects:sort, nil];
         
         NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:dataManager.dump sectionNameKeyPath:nil cacheName:nil];

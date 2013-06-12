@@ -8,19 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    LoggedIn,
+    LoggedOut
+} LoginStatus;
+
 @class User;
 
 @interface UserManager : NSObject
 
-@property (nonatomic, strong) User *currentUser;
-/** tmp **/
-@property (nonatomic, strong) NSString *currentUsername;
-@property (nonatomic, strong) NSString *currentPassword;
+@property (nonatomic, readonly) LoginStatus status;
+@property (nonatomic, readonly) User *currentUser;
 
 + (UserManager*)sharedManager;
-
-/** tmp **/
-- (void)setCurrentUser:(User*)u password:(NSString *)p;
+- (void)refreshLoginStatus;
 - (BOOL)retrieveSavedUser;
+
+// tmp
+- (void)handleLogout;
 
 @end

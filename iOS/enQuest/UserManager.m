@@ -9,29 +9,80 @@
 #import "SYNTHESIZE_GOD.h"
 #import "UserManager.h"
 #import "User.h"
+#import "CoreDataManager.h"
 
 @implementation UserManager
 
 SYNTHESIZE_GOD(UserManager, sharedManager);
 
+@synthesize status = _status;
 @synthesize currentUser = _currentUser;
-@synthesize currentUsername = _currentUsername;
-@synthesize currentPassword = _currentPassword;
 
-- (void)setCurrentUser:(User*)u password:(NSString *)p
+- (void)refreshLoginStatus
 {
-    self.currentUser = u;
-    self.currentUsername = u.username;
-    self.currentPassword = p;
+    SMClient *client = [SMClient defaultClient];
+    if (client.networkMonitor.currentNetworkStatus == SMNetworkStatusReachable) {
+        NSLog(@"...attempting to retrieve user info from StackMob");
+        /* if network is reacheable, try to get user from server */
+        [client getLoggedInUserOnSuccess:^(NSDictionary *result) {
+            NSLog(@"...already logged in: %@", result);
+            
+            /* todo: assert same username as one in user defaults */
+            
+            // fetch user object
+            NSFetchRequest *userFetch = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+            [userFetch setPredicate:[NSPredicate predicateWithFormat:@"username == %@", [result objectForKey:@"username"]]];
+            NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
+            [context executeFetchRequest:userFetch onSuccess:^(NSArray *results) {                
+                // update current user data
+                [self setCurrentUser:[results lastObject]];
+                
+                [self updateStatus:LoggedIn];
+            } onFailure:^(NSError *error) {
+                NSLog(@"Error fetching user object: %@", error);
+                /** todo: handle this **/
+            }];
+            
+        } onFailure:^(NSError *error) {
+            /* if not logged in, change status and */
+            NSLog(@"...not logged in yet");
+            [self updateStatus:LoggedOut];
+        }];
+    }
+    else {
+        /* if network is unreacheable, try to read username from user defaults */
+        if (!self.currentUser) {
+            /* if username is not stored, change status to logout */
+            if (![self retrieveSavedUser]) {
+                NSLog(@"...no login info stored");
+                [self updateStatus:LoggedOut];
+            }
+        }
+        else {
+            [self updateStatus:LoggedIn];
+        }
+    }
+}
+
+- (void)updateStatus:(LoginStatus)newStatus
+{
+    LoginStatus currentStatus = self.status;
+    _status = newStatus;
     
-    // save preference
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:LoginInformationStoredKey];
-    [defaults setObject:u.username forKey:StoredUsernameKey];
-    [defaults setObject:p forKey:StoredPasswordKey];
-    BOOL success = [defaults synchronize];
-    NSAssert(success, @"login info save failed");
-    NSLog(@"...Login info saved: { %@ : %@ }", u.username, p);
+    if (newStatus == LoggedIn && currentStatus == LoggedOut) {
+        NSLog(@"...Sending Login Notification!");
+        [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotification object:nil];
+    }
+    else if (newStatus == LoggedOut && currentStatus == LoggedIn) {
+        NSLog(@"...Sending Logout Notification!");
+        [[NSNotificationCenter defaultCenter] postNotificationName:LogoutNotification object:nil];
+    }
+}
+
+- (void)handleLogout
+{
+    [self setCurrentUser:nil];
+    [self refreshLoginStatus];
 }
 
 - (BOOL)retrieveSavedUser
@@ -39,11 +90,24 @@ SYNTHESIZE_GOD(UserManager, sharedManager);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:LoginInformationStoredKey]) {
         NSString *username = [defaults objectForKey:StoredUsernameKey];
-        NSString *password = [defaults objectForKey:StoredPasswordKey];
-        NSLog(@"...Login info retrieved: { %@ : %@ }", username, password);
-        self.currentUsername = username;
-        self.currentPassword = password;
-        return YES;
+        NSLog(@"...Login info retrieved: { username : %@ }", username);
+        
+        // fetch user object (synchronously)
+        NSFetchRequest *userFetch = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+        userFetch.predicate = [NSPredicate predicateWithFormat:@"username == %@", username];
+        NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
+        
+        NSError *err = nil;
+        NSArray *results = [context executeFetchRequest:userFetch error:&err];
+        if ([results count] == 1) {
+            // update current user data
+            _currentUser = [results lastObject];
+            return YES;
+        }
+        else {
+            NSLog(@"Error fetching user object: %@", err);
+            return NO;
+        }
     }
     return NO;
 }
@@ -51,17 +115,19 @@ SYNTHESIZE_GOD(UserManager, sharedManager);
 - (void)setCurrentUser:(User *)u
 {
     _currentUser = u;
-    if (!u) {
-        self.currentPassword = nil;
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:NO forKey:LoginInformationStoredKey];
-        [defaults setObject:nil forKey:StoredUsernameKey];
-        [defaults setObject:nil forKey:StoredPasswordKey];
-        BOOL success = [defaults synchronize];
-        NSAssert(success, @"login info reset save failed");
-        NSLog(@"...Login info reset.");
+    
+    // save preference
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (u) {
+        [defaults setBool:YES forKey:LoginInformationStoredKey];
     }
+    else {
+        [defaults setBool:NO forKey:LoginInformationStoredKey];
+    }
+    [defaults setObject:u.username forKey:StoredUsernameKey];
+    BOOL success = [defaults synchronize];
+    NSAssert(success, @"login info save failed");
+    NSLog(@"...Login info saved: { username : %@ }", u.username);
 }
 
 

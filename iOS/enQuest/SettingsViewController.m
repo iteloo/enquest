@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "UserManager.h"
 #import "RootViewController.h"
+#import "User.h"
 
 @interface SettingsViewController ()
 
@@ -36,14 +37,13 @@
 
 - (void)updateLoginField
 {
-    NSString *username = [UserManager sharedManager].currentUsername;
+    NSString *username = [UserManager sharedManager].currentUser.username;
     self.loginStatus.text = [NSString stringWithFormat:@"Logged in as %@.", username];
 }
 
 - (IBAction)logout:(id)sender
 {
     [[SMClient defaultClient] logoutOnSuccess:^(NSDictionary *result) {
-        [UserManager sharedManager].currentUser = nil;
         NSLog(@"Success, you are logged out");
         /* re-enable logout button */
         logoutButton.enabled = YES;
@@ -52,12 +52,16 @@
         // reset login status label (for safety; not technically needed since login page will block everything)
         self.loginStatus.text = @"You are not logged in.";
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:LogoutNotification object:nil];
+        // refresh user manager
+        /** todo: more streamlined operation **/
+        [[UserManager sharedManager] handleLogout];
         
     } onFailure:^(NSError *error) {
         NSLog(@"Logout Fail: %@",error);
-        /** present some kind of alert **/
-        /** need to wait for better error handling objects **/
+        
+        // display alert
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Logout was unsuccessful." message:[error.userInfo objectForKey:@"error_description"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
         
         /* re-enable logout button */
         logoutButton.enabled = YES;

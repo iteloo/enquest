@@ -65,30 +65,13 @@
     self.password_field.enabled = NO;
     
     [client loginWithUsername:username password:password onSuccess:^(NSDictionary *results) {
-        
         NSLog(@"Login Success: %@", results);
         
-        /* Uncomment the following if you are using Core Data integration and want to retrieve a managed object representation of the user object.  Store the resulting object or object ID for future use.
-         
-         Be sure to declare variables you are referencing in this block with the __block storage type modifier, including the managedObjectContext property.
-         */
+        // refresh user manager
+        [[UserManager sharedManager] refreshLoginStatus];
         
-        NSFetchRequest *userFetch = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-        [userFetch setPredicate:[NSPredicate predicateWithFormat:@"username == %@", [results objectForKey:@"username"]]];
-        NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
-        [context executeFetchRequest:userFetch onSuccess:^(NSArray *results) {
-            
-            User *user = [results lastObject];
-            [[UserManager sharedManager] setCurrentUser:user password:password];
-            
-            // dismiss login screen
-            [self dismissViewControllerAnimated:YES completion:nil];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotification object:nil];
-            
-        } onFailure:^(NSError *error) {
-            NSLog(@"Error fetching user object: %@", error);
-        }];
+        // dismiss login screen
+        [self dismissViewControllerAnimated:YES completion:nil];
         
     } onFailure:^(NSError *error) {
         
