@@ -55,7 +55,7 @@
         CoreDataManager *dataManager = [CoreDataManager sharedManager];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Site" inManagedObjectContext:dataManager.dump];
         /** change sort method **/
-        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
+        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
         /** fix predicate problem of not getting local updates **/
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"quest == %@", self.draft];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -79,6 +79,8 @@
 
 - (IBAction)addNewSite:(id)sender {
     
+    /** todo: disable button until new site saved **/
+    
     //make new site
     NSManagedObjectContext *context = [CoreDataManager sharedManager].dump;
     Site *newSite = [[Site alloc] initIntoManagedObjectContext:context];
@@ -96,11 +98,6 @@
         // save context
         [context saveOnSuccess:^{
             NSLog(@"New site created");
-            NSError *error = nil;
-            if (![self.fetchedResultsController performFetch:&error]) {
-                NSLog(@"in siteView: addNewSite:");
-                NSLog(@"...new fetch failed with error: %@",error);
-            }
             
         } onFailure:^(NSError *error) {
             [context deleteObject:newSite];
@@ -161,6 +158,9 @@
 			
         case NSFetchedResultsChangeMove:
 			NSLog(@"...Move");
+            NSLog(@"%@ --> %@",indexPath,newIndexPath);
+            /** hack: sometimes update gets reported as move **/
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:newIndexPath];
             [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
             break;
     }
@@ -184,9 +184,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"%@",self.fetchedResultsController);
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    NSLog(@"%d",sectionInfo.numberOfObjects);
 	return sectionInfo.numberOfObjects;
 }
 

@@ -117,11 +117,6 @@
     //save (change will be picked up by fetchedResultsController)
     [context saveOnSuccess:^{
         NSLog(@"New draft created");
-        NSError *error = nil;
-        if (![self.fetchedResultsController performFetch:&error]) {
-            NSLog(@"in draftView: addNewDraft:");
-            NSLog(@"...new fetch failed with error: %@",error);
-        }        
     } onFailure:^(NSError *error) {
         [context deleteObject:newDraft];
         NSLog(@"Error creating draft: %@", error);
@@ -173,6 +168,8 @@
         case NSFetchedResultsChangeMove:
 			NSLog(@"...Move");
             [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+            /** hack: sometimes update gets reported as move **/
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
     }
 }
@@ -200,9 +197,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"%@",self.fetchedResultsController);
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    NSLog(@"%d",sectionInfo.numberOfObjects);
 	return sectionInfo.numberOfObjects;
 }
 

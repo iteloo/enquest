@@ -19,7 +19,7 @@
     [self setLeftPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"leftViewController"]];
     [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"centerViewController"]];
     //[self setRightPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"rightViewController"]];
-    self.panningLimitedToTopViewController = NO;
+    //self.panningLimitedToTopViewController = NO;
 }
 
 - (void)didReceiveMemoryWarning
