@@ -33,6 +33,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    __weak DraftViewController *bself = self;
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [bself.fetchedResultsController performFetch:nil];
+        [bself.tableView reloadData];
+        [bself.tableView.pullToRefreshView stopAnimating];
+    }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogin) name:LoginNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogout) name:LogoutNotification object:nil];
 
@@ -73,16 +79,16 @@
     
     if (!_fetchedResultsController) {
         CoreDataManager *dataManager = [CoreDataManager sharedManager];
-        NSString *username = [UserManager sharedManager].currentUsername;
+        User *user = [UserManager sharedManager].currentUser;
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Quest" inManagedObjectContext:dataManager.dump];
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"lastmoddate" ascending:NO];
         /** fix problem of deletion when changing sites **/
-        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"author == %@", username];
-        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"published == %@", @"false"];
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"author == %@", user];
+        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"published == NO"];
         NSPredicate *andPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate1, predicate2, nil]];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
-        request.predicate = andPredicate;
+        request.predicate = predicate2; //hack: compound predicates currently not supported
         request.sortDescriptors = [NSArray arrayWithObjects:sort, nil];
         
         NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:dataManager.dump sectionNameKeyPath:nil cacheName:nil];
@@ -108,16 +114,14 @@
     newDraft.name = @"Untitled Draft";
     newDraft.published = [NSNumber numberWithBool:NO];
     
-    //save (change will be picked up by fetchedResultsController?)
+    //save (change will be picked up by fetchedResultsController)
     [context saveOnSuccess:^{
         NSLog(@"New draft created");
         NSError *error = nil;
         if (![self.fetchedResultsController performFetch:&error]) {
             NSLog(@"in draftView: addNewDraft:");
             NSLog(@"...new fetch failed with error: %@",error);
-        }
-        [self.tableView reloadData];
-        
+        }        
     } onFailure:^(NSError *error) {
         [context deleteObject:newDraft];
         NSLog(@"Error creating draft: %@", error);

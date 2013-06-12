@@ -19,4 +19,5 @@
     #import <MobileCoreServices/MobileCoreServices.h>
     #import "CoreDataMacros.h"
     #import "StackMob.h"
+    #import "UIScrollView+SVPullToRefresh.h"
 #endif

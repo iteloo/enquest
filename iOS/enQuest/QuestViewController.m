@@ -34,6 +34,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    __weak QuestViewController *bself = self;
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [bself.fetchedResultsController performFetch:nil];
+        [bself.tableView reloadData];
+        [bself.tableView.pullToRefreshView stopAnimating];
+    }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogin) name:LoginNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogout) name:LogoutNotification object:nil];
 }
@@ -78,7 +84,7 @@
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"lastmoddate" ascending:NO];
         /** fix problem of deletion when changing sites **/
         //NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"author == %@", username];
-        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"published == %@", @"true"];
+        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"published == YES"];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
         request.predicate = predicate2;
@@ -159,6 +165,8 @@
     questCell.questDescriptionLabel.text = quest.questDescription;
     NSUInteger numberOfSites = [quest.sites count];
     questCell.metaDataLabel.text = [NSString stringWithFormat:(numberOfSites==1 ? @"%d site" : @"%d sites"), numberOfSites];
+    NSSet *myGames = [UserManager sharedManager].currentUser.games;
+    questCell.statusLabel.hidden = ![myGames intersectsSet:quest.games];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

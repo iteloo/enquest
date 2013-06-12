@@ -7,6 +7,7 @@
 //
 
 #import "GamesViewController.h"
+#import "GameDetailViewController.h"
 #import "CoreDataManager.h"
 #import "UserManager.h"
 #import "Game.h"
@@ -33,6 +34,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    __weak GamesViewController *bself = self;
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [bself.fetchedResultsController performFetch:nil];
+        [bself.tableView reloadData];
+        [bself.tableView.pullToRefreshView stopAnimating];
+    }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogin) name:LoginNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLogout) name:LogoutNotification object:nil];
     
@@ -40,11 +47,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // attach quest to detail view controller
-    //UITableViewCell *senderCell = sender;
-    //NSIndexPath *path = [self.tableView indexPathForCell:senderCell];
-    //QuestDetailViewController *controller = segue.destinationViewController;
-    //controller.quest = [self.fetchedResultsController objectAtIndexPath:path];
+    // attach game to detail view controller
+    UITableViewCell *senderCell = sender;
+    NSIndexPath *path = [self.tableView indexPathForCell:senderCell];
+    GameDetailViewController *controller = segue.destinationViewController;
+    controller.game = [self.fetchedResultsController objectAtIndexPath:path];
 }
 
 - (void)handleLogin
@@ -73,11 +80,11 @@
     
     if (!_fetchedResultsController) {
         CoreDataManager *dataManager = [CoreDataManager sharedManager];
-        NSString *username = [UserManager sharedManager].currentUsername;
+        User *user = [UserManager sharedManager].currentUser;
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Game" inManagedObjectContext:dataManager.dump];
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"lastmoddate" ascending:NO];
         /** fix problem of deletion when changing sites **/
-        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"player == %@", username];
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"player == %@", user];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
         request.predicate = predicate1;

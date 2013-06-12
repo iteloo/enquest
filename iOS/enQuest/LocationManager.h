@@ -11,6 +11,7 @@
 @interface LocationManager : NSObject <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic) UIBackgroundTaskIdentifier bgTask;
 
 + (LocationManager*)sharedManager;
 - (void)updateSitesTracked;

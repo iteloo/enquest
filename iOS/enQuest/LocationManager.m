@@ -19,6 +19,7 @@
 @implementation LocationManager
 
 @synthesize locationManager;
+@synthesize bgTask;
 
 SYNTHESIZE_GOD(LocationManager, sharedManager);
 
@@ -26,12 +27,22 @@ SYNTHESIZE_GOD(LocationManager, sharedManager);
 {
     if (self = [super init]) {
         locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate = self;
+        self.locationManager.delegate = self;
+        [self.locationManager startMonitoringSignificantLocationChanges];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSitesTracked) name:LoginNotification object:nil];
 
-        /** check regionMonitoringAvailable and authorizationStatus **/
+        /** todo: check regionMonitoringAvailable and authorizationStatus **/
     }
     return self;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *loc = [locations lastObject];
+    if ([loc.timestamp timeIntervalSinceNow] > 1.0) {
+        /** todo: pass location in **/
+        [self updateSitesTracked];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
@@ -60,23 +71,26 @@ SYNTHESIZE_GOD(LocationManager, sharedManager);
         // stop monitoring region
         [self.locationManager stopMonitoringForRegion:region];
         
+        // alert user
+        
+        
     } onFailure:^(NSError *error) {
         NSLog(@"Error creating visit: %@", error);
         [context deleteObject:newVisit];
     }];
     
-    /** async fetch conflict with each other? **/
-    /*[context executeFetchRequest:request onSuccess:^(NSArray *results) {
+    [context executeFetchRequest:request onSuccess:^(NSArray *results) {
         NSAssert([results count]==1, @"result count wrong");
         Site *site = [results lastObject];
         NSLog(@"You have entered: %@", site);
     } onFailure:^(NSError *error) {
         NSLog(@"error fetching site using region: %@", error);
-    }];*/
+    }];
 }
 
 - (void)updateSitesTracked
 {
+    NSLog(@"...updating sites tracked");
     // get current location
     [SMGeoPoint getGeoPointForCurrentLocationOnSuccess:^(SMGeoPoint *geoPoint) {
         
@@ -105,14 +119,19 @@ SYNTHESIZE_GOD(LocationManager, sharedManager);
         [cdm.dump executeFetchRequest:fetchRequest onSuccess:^(NSArray *results) {
             NSLog(@"Successful geoquery.");
             [results enumerateObjectsUsingBlock:^(Site *siteToTrack, NSUInteger idx, BOOL *stop) {
+                
+                // avoid monitoring duplicate regions
                 NSUInteger count = [[self.locationManager.monitoredRegions filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", siteToTrack.siteId]] count];
-                NSAssert(count > 0, @"monitoring duplicate regions");
+                if (count > 0 ) {
+                    return;
+                }
+                //NSAssert(count > 0, @"monitoring duplicate regions");
                 
                 SMGeoPoint *point = [NSKeyedUnarchiver unarchiveObjectWithData:siteToTrack.location];
                 CLLocationCoordinate2D coordinates = CLLocationCoordinate2DMake([[point latitude] floatValue], [[point longitude] floatValue]);
                 MKCircle *overlay = [MKCircle circleWithCenterCoordinate:coordinates radius:[siteToTrack.radius floatValue]];
                 [self registerRegionWithCircularOverlay:overlay andIdentifier:siteToTrack.siteId];
-                //NSLog(@"SMGeoPoint for site %@ in results: %@", siteToTrack, point);
+                NSLog(@"...tracking site: SMGeoPoint for site %@ in results: %@", siteToTrack, point);
             }];
         } onFailure:^(NSError *error) {
             NSLog(@"Error fetching closeby sites: %@", error);

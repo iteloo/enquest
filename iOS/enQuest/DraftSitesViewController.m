@@ -57,7 +57,7 @@
         /** change sort method **/
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
         /** fix predicate problem of not getting local updates **/
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"quest == %@", self.draft.questId];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"quest == %@", self.draft];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         request.entity = entity;
         request.predicate = predicate;
@@ -101,7 +101,6 @@
                 NSLog(@"in siteView: addNewSite:");
                 NSLog(@"...new fetch failed with error: %@",error);
             }
-            [self.tableView reloadData];
             
         } onFailure:^(NSError *error) {
             [context deleteObject:newSite];

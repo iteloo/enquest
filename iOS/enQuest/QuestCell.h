@@ -15,5 +15,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *authorLabel;
 @property (nonatomic, weak) IBOutlet HighlightingTextView *questDescriptionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *metaDataLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+
 
 @end

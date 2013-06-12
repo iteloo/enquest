@@ -15,3 +15,5 @@
  */
 
 NSString * Base64EncodedStringFromData(NSData *data);
+
+NSData * Base64DecodedDataFromString(NSString *strBase64);

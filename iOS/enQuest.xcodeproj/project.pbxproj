@@ -67,6 +67,7 @@
 		03CDC6EA16FE6DFD0088D16C /* DraftEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CDC6E916FE6DFC0088D16C /* DraftEditorViewController.m */; };
 		03CDC6ED16FE77DF0088D16C /* DraftSitesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CDC6EC16FE77DF0088D16C /* DraftSitesViewController.m */; };
 		03CDC6F016FEA15D0088D16C /* TextFieldInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */; };
+		03F710A11717356B00B63C49 /* GameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F710A01717356B00B63C49 /* GameDetailViewController.m */; };
 		03FBB045170118DD001E2414 /* SiteEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FBB044170118DD001E2414 /* SiteEditorViewController.m */; };
 		03FBB05D17016928001E2414 /* draft_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FBB05C17016928001E2414 /* draft_icon.png */; };
 		03FBB061170169E0001E2414 /* quests_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FBB060170169E0001E2414 /* quests_icon.png */; };
@@ -178,6 +179,8 @@
 		03CDC6EC16FE77DF0088D16C /* DraftSitesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftSitesViewController.m; sourceTree = "<group>"; };
 		03CDC6EE16FEA15A0088D16C /* TextFieldInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldInputViewController.h; sourceTree = "<group>"; };
 		03CDC6EF16FEA15B0088D16C /* TextFieldInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldInputViewController.m; sourceTree = "<group>"; };
+		03F7109F1717356B00B63C49 /* GameDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDetailViewController.h; sourceTree = "<group>"; };
+		03F710A01717356B00B63C49 /* GameDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDetailViewController.m; sourceTree = "<group>"; };
 		03FBB043170118DD001E2414 /* SiteEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteEditorViewController.h; sourceTree = "<group>"; };
 		03FBB044170118DD001E2414 /* SiteEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteEditorViewController.m; sourceTree = "<group>"; };
 		03FBB05C17016928001E2414 /* draft_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draft_icon.png; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 				0384EEAF1713C9B5009EEED6 /* LocationManager.m */,
 				038EA73B1715F4F500C07874 /* GamesViewController.h */,
 				038EA73C1715F4F500C07874 /* GamesViewController.m */,
+				03F7109F1717356B00B63C49 /* GameDetailViewController.h */,
+				03F710A01717356B00B63C49 /* GameDetailViewController.m */,
 				03836BFB16FBE57F004EED6B /* MapViewController.h */,
 				03836BFC16FBE57F004EED6B /* MapViewController.m */,
 			);
@@ -613,6 +618,7 @@
 				0384EEB01713C9B5009EEED6 /* LocationManager.m in Sources */,
 				0384EEB31713F4F4009EEED6 /* QuestDetailViewController.m in Sources */,
 				038EA73D1715F4F500C07874 /* GamesViewController.m in Sources */,
+				03F710A11717356B00B63C49 /* GameDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,6 +731,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "enQuest/enQuest-Prefix.pch";
 				INFOPLIST_FILE = "enQuest/enQuest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -739,6 +746,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "enQuest/enQuest-Prefix.pch";
 				INFOPLIST_FILE = "enQuest/enQuest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

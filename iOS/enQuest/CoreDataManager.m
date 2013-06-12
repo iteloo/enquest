@@ -20,6 +20,16 @@ SYNTHESIZE_GOD(CoreDataManager, sharedManager);
 {
     SMClient *client = [SMClient defaultClient];
     SMCoreDataStore *coreDataStore = [client coreDataStoreWithManagedObjectModel:self.managedObjectModel];
+    __block SMCoreDataStore *blockCoreDataStore = coreDataStore;
+    [client.session.networkMonitor setNetworkStatusChangeBlockWithCachePolicyReturn:^SMCachePolicy(SMNetworkStatus status) {
+        
+        if (status == SMNetworkStatusReachable) {
+            [blockCoreDataStore syncWithServer];
+            return SMCachePolicyTryNetworkElseCache;
+        } else {
+            return SMCachePolicyTryCacheOnly;
+        }
+    }];
     self.dump = [coreDataStore contextForCurrentThread];
 }
 
